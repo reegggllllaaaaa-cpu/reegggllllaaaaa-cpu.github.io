@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>授權與第三方聲明 | Apobri</title>
+<meta name="description" content="Apobri 使用的開放原始碼與第三方元件摘要、各自的授權，以及 ffmpeg 的使用方式。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="授權與第三方聲明 | Apobri">
+<meta property="og:description" content="Apobri 使用的開放原始碼與第三方元件摘要、各自的授權，以及 ffmpeg 的使用方式。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:locale:alternate" content="en_US">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="licenses.html">
+<link rel="alternate" hreflang="en" href="en/licenses.html">
+<link rel="alternate" hreflang="x-default" href="licenses.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="主要選單"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html" aria-current="page">授權與第三方聲明</a></nav>
+    <a class="lang" href="en/licenses.html" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<h1>授權與第三方聲明</h1>
+<p class="meta">最後修訂：2026-10-13。本頁是摘要，不是法律意見；完整清單與授權全文隨 Host 安裝在 <code>licenses</code> 資料夾。</p>
+
+<h2 id="host">Windows Host 隨附的元件</h2>
+<div class="tablewrap"><table>
+  <tr><th>元件</th><th>用途</th><th>授權</th></tr>
+  <tr><td>SIPSorcery、SIPSorceryMedia.Abstractions 10.0.17</td><td>WebRTC、RTP</td><td>BSD-3-Clause，另有該專案附加的使用條款；請見隨附的 SIPSorcery 授權全文</td></tr>
+  <tr><td>QRCoder 1.8.0</td><td>配對 QR Code</td><td>MIT</td></tr>
+  <tr><td>BouncyCastle.Cryptography 2.7.0</td><td>密碼學</td><td>MIT</td></tr>
+  <tr><td>Concentus 2.2.2</td><td>Opus 音訊編碼（管理程式碼）</td><td>BSD-3-Clause 風格</td></tr>
+  <tr><td>NAudio.Wasapi、NAudio.Core 2.2.1</td><td>擷取 Windows 系統聲音（WASAPI loopback）</td><td>MIT</td></tr>
+  <tr><td>Vortice.Direct3D11／DXGI／D3DCompiler 3.8.3 及相關套件</td><td>螢幕擷取（Direct3D／DXGI）</td><td>MIT</td></tr>
+  <tr><td>System.Security.Cryptography.ProtectedData、System.Drawing.Common 等 Microsoft 套件</td><td>DPAPI、繪圖</td><td>MIT</td></tr>
+  <tr><td>DnsClient、Makaretu.Dns／Dns.Multicast、IPNetwork2、SimpleBase、Common.Logging、websocket-sharp（SIPSorcery 版）、SharpGen.Runtime</td><td>網路探索與支援函式庫</td><td>Apache-2.0、MIT 或 BSD（以各專案為準，全文隨附）</td></tr>
+  <tr><td>Microsoft .NET 10 執行階段、ASP.NET Core 與 Windows Desktop 執行階段（安裝程式內附 Microsoft 官方安裝檔，電腦上沒有時才安裝）</td><td>執行環境</td><td>MIT（Microsoft）</td></tr>
+  <tr><td>Virtual Display Driver（MttVDD，驅動版本 11.30.4.434，2024-12-24）</td><td>虛擬螢幕（填滿 iPad／延伸桌面）</td><td>MIT（VirtualDrivers／Mike the Tech；驅動由 SignPath Foundation 簽章）</td></tr>
+</table></div>
+
+<h2 id="ffmpeg">ffmpeg</h2>
+<p>Apobri Host 不內含也不連結 ffmpeg 的函式庫；它把 <code>ffmpeg.exe</code> 當成<strong>獨立的子程式</strong>啟動，透過管線交換影像資料，用它做影像編碼。ffmpeg 是由使用者端的 Host 使用的。</p>
+<p>安裝程式隨附的是 <strong>LGPL 版</strong> ffmpeg（BtbN FFmpeg-Builds 的 win64-lgpl 建置，版本 n9.0.2-28-g669f5ab083，未啟用 <code>--enable-gpl</code> 與 <code>--enable-nonfree</code>），授權為 GNU LGPL 第 3 版或更新版本。授權全文、建置設定、原始碼位置（<a href="https://github.com/FFmpeg/FFmpeg/tree/669f5ab083c7732c10f1ce9e4f1915960dd88457">FFmpeg 原始碼</a>、<a href="https://github.com/BtbN/FFmpeg-Builds/tree/autobuild-2026-10-15-13-03">建置腳本</a>）與書面提供原始碼的承諾，都放在安裝資料夾的 <code>licenses\ffmpeg</code>。你可以把 <code>ffmpeg.exe</code> 換成自己的建置。</p>
+
+<h2 id="ios">iPad／iPhone App</h2>
+<p>iPad App 使用 WebRTC 函式庫（透過 Swift Package Manager 的預先建置版本，採 BSD 風格授權）。它在你的裝置上執行，不會把你的資料送給第三方。</p>
+
+<h2 id="others">未隨附但會用到的軟體</h2>
+<ul>
+  <li><strong>Tailscale</strong>：Host 若偵測到電腦已安裝 Tailscale，會以唯讀方式查詢它的狀態。Tailscale 不隨附於 Apobri，由你自行安裝。</li>
+  <li>Apple、iPad、iPhone、Windows、Tailscale 等名稱屬於各自的所有人，本站僅作描述相容性之用，不代表任何合作或背書。</li>
+</ul>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

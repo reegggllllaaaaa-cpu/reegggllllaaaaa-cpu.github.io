@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy | Apobri</title>
+<meta name="description" content="Apobri collects no data: no account, telemetry, analytics or ads. This page explains what the app and the Windows Host store, what each permission is for, and the third-party components used.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="Privacy policy | Apobri">
+<meta property="og:description" content="Apobri collects no data: no account, telemetry, analytics or ads. This page explains what the app and the Windows Host store, what each permission is for, and the third-party components used.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="../privacy.html">
+<link rel="alternate" hreflang="en" href="privacy.html">
+<link rel="alternate" hreflang="x-default" href="../privacy.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html" aria-current="page">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <a class="lang" href="../privacy.html" hreflang="zh-Hant" lang="zh-Hant" aria-label="切換為繁體中文">繁體中文</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<h1>Privacy policy</h1>
+<p class="meta">Last revised: 2026-10-16. Applies to the Apobri iPad/iPhone app and the Apobri Windows Host.</p>
+
+<h2 id="short">The short version</h2>
+<ul>
+  <li>Apobri <strong>collects none of your data</strong>. There is no account, telemetry, analytics, crash upload or advertising, and no tracking. The developer never receives your screen, input, files or device information.</li>
+  <li>The screen, input, clipboard text and files go <strong>only to devices you paired</strong>, over your home network, Tailscale or another connection you set up yourself. There is no Apobri cloud or relay server.</li>
+  <li>The Windows Host itself does not open Internet connections. The one exception is the Apobri service&rsquo;s <a href="#update">update check</a>, which only asks GitHub whether a new Host version exists and sends nothing about you.</li>
+  <li>Everything is stored on your own devices, and you can revoke devices or delete the data at any time.</li>
+</ul>
+
+<h2 id="collect">What we collect</h2>
+<p>Nothing. The iPad app&rsquo;s Privacy Manifest declares: no tracking, no tracking domains, no collected data types.</p>
+
+<h2 id="flow">How data travels</h2>
+<p>Your iPad connects directly to your Windows PC. Video, input and the data channels use WebRTC with DTLS encryption. The Host uses no STUN or TURN server when connecting, so no third party learns your address.</p>
+<p>One thing to state plainly: the signaling that sets up the connection currently uses an unencrypted HTTP port on your local network (default 8765). It includes the challenge-response used when logging in with a pairing code (the code itself is not sent in the clear). On networks you do not trust, use Tailscale. The Host&rsquo;s HTTPS port (8766) uses a self-signed certificate whose fingerprint the app pins during QR pairing.</p>
+<p>The Host listens only on private addresses: this PC, your local network (10.x, 172.16&ndash;31.x, 192.168.x) and Tailscale (100.64.x&ndash;100.127.x). The pairing page and device management accept requests only from the PC itself.</p>
+
+<h2 id="update">Automatic update check (Windows)</h2>
+<p>When the Apobri service (which keeps the Host up to date) is installed, it asks GitHub over HTTPS (<code>api.github.com</code> and GitHub&rsquo;s download servers) for the newest Apobri Host release of one public repository every 6 hours, and when you press &ldquo;Check for updates&rdquo; / &ldquo;Update&rdquo; in the app. The request carries nothing about you or your PC besides what any web request carries (your IP address and a <code>User-Agent: ApobriUpdater/1</code> header). A downloaded package is installed only if its signature verifies with the Apobri key built into the service. GitHub is an independent third-party service with its own privacy policy.</p>
+
+<h2 id="purchases">In-app purchases</h2>
+<p>The free trial and the unlock in the iPad/iPhone app are Apple in-app purchases. Apple handles payment and your Apple ID; we never receive your name, email or payment details. The app only asks the App Store whether this device&rsquo;s Apple ID owns the trial or the unlock (and when the trial started).</p>
+
+<h2 id="stored-app">What the iPad/iPhone app stores</h2>
+<ul>
+  <li><strong>Keychain</strong>: this device&rsquo;s pairing key and pairing credentials.</li>
+  <li><strong>App-local settings</strong>: the names and addresses of saved PCs, and connection and input preferences.</li>
+  <li>Files you receive are kept inside the app and in the Files app; they go to your Photos library only if you turn on &ldquo;Save received photos &amp; videos to Photos&rdquo;.</li>
+</ul>
+<p>This data does not leave your device, except what you yourself send to your PC during a connection. The Screen Broadcast extension sends the screen and sound of a broadcast you start yourself directly to the PC address you entered; it stores nothing and uses no server.</p>
+
+<h2 id="stored-host">What the Windows Host stores</h2>
+<p>Everything lives under <code>%APPDATA%\AppleBridge</code> in your Windows profile (the folder name keeps the old product name), readable by default only by your Windows account.</p>
+<div class="tablewrap"><table>
+  <tr><th>File</th><th>Content</th><th>Protection</th></tr>
+  <tr><td><code>config.json</code></td><td>Settings, the 8-digit pairing code, and the inbox token used by iPhone Shortcuts</td><td>Plain text, but access is restricted to the current Windows user</td></tr>
+  <tr><td><code>devices.json</code></td><td>Per paired device: id, name, platform, created and last-seen times, verification data</td><td>The verification data is encrypted with Windows DPAPI (current-user scope); copying it to another PC or user gives nothing</td></tr>
+  <tr><td><code>host.pfx</code> (and password file)</td><td>The Host&rsquo;s self-signed HTTPS certificate and key, generated on first start</td><td>Random password per installation, protected with DPAPI; file access restricted to the current user</td></tr>
+  <tr><td><code>host.log</code>, <code>host.err.log</code></td><td>Operational log: connection times, device names and ids, <strong>IP addresses of your devices</strong>, encoder and network statistics</td><td>Plain text, rotated at 5 MB. The pairing code and inbox token are not written to the log</td></tr>
+  <tr><td><code>Downloads\Apobri</code> (formerly <code>Downloads\AppleBridge</code>, renamed at start)</td><td>Files you send from or to the iPad</td><td>Normal Downloads folder permissions</td></tr>
+</table></div>
+<p>Screen content is never written to disk: frames go from the GPU to the encoder to the network. The Host also sets the Windows clipboard when you ask it to. Apobri sends none of this anywhere.</p>
+<p>System sound (whatever the PC is playing, possibly private) is captured only during an authenticated WebRTC connection and only while the iPad's Sound switch is on, and travels over the same encrypted connection to that iPad; it is not recorded or written to disk, and in every other case the audio device is not opened at all. Turn it off in the iPad settings, or set <code>"Audio": false</code> in the Host config.</p>
+<p>For the &ldquo;Nearby computers&rdquo; feature the Host announces itself on your local network with mDNS (<code>_apobri._tcp</code>): the computer name, private LAN IPv4 addresses, ports, the certificate fingerprint (public information), whether pairing is allowed, and a random host id. The announcement never leaves the local network and never contains the pairing code, keys, user name, file names or window titles. People on the same network can learn that this PC runs Apobri, but cannot connect: a new device must still be approved with Allow on the PC. You can turn it off with <code>"Discovery": false</code> in <code>config.json</code>.</p>
+<p>Local helper programs the Host runs: <code>ffmpeg.exe</code> (video encoding), <code>powershell</code> (notifications), and, only if Tailscale is installed, <code>tailscale status --json</code> (read-only). None of them is told to contact the Internet.</p>
+
+<h2 id="permissions">Permissions and what they are for</h2>
+<div class="tablewrap"><table>
+  <tr><th>Permission</th><th>Purpose</th></tr>
+  <tr><td>Local Network</td><td>To find and connect to your Windows PC on your network (including &ldquo;Nearby computers&rdquo;, which uses the Bonjour service <code>_apobri._tcp</code>), and to show and control it. Without it the app cannot connect.</td></tr>
+  <tr><td>Camera</td><td>Only to scan the QR code on the Host&rsquo;s pairing page. It takes no photos and records no video.</td></tr>
+  <tr><td>Microphone</td><td>Only if you start a Screen Broadcast from the system picker and turn on its microphone button, to send your microphone audio to your PC. Otherwise it never records audio.</td></tr>
+  <tr><td>Photos (add only)</td><td>Only if you turn on &ldquo;Save received photos &amp; videos to Photos&rdquo;, to save photos and videos sent from your PC to your library. Apobri never reads your library.</td></tr>
+</table></div>
+
+<h2 id="revoke">Revoking and deleting</h2>
+<ul>
+  <li>Revoke one device: pairing page on the PC &gt; device list, or <code>AppleBridge.Host.exe --revoke &lt;id-prefix&gt;</code>. Revoke all: <code>AppleBridge.Host.exe --revoke all</code>. Connected sessions are dropped immediately.</li>
+  <li>Delete all Host data: answer yes to deleting settings, devices and logs when uninstalling, or delete <code>%APPDATA%\AppleBridge</code> yourself.</li>
+  <li>Delete app data: delete the Apobri app from your iPad; its Keychain items and local data are removed with it.</li>
+</ul>
+
+<h2 id="third">Third-party components</h2>
+<p>Apobri uses open-source components (for example SIPSorcery, QRCoder and Vortice in the Host, and a WebRTC library in the iPad app) and calls ffmpeg as a video encoder. They all run on your devices and do not send your data to their authors or any third party. See <a href="licenses.html">Licenses and third-party notices</a> for the list and licenses. Tailscale, if you choose to use it, is a separate third-party service with its own privacy policy.</p>
+
+<h2 id="children">Children&rsquo;s privacy</h2>
+<p>Apobri is not directed at children and collects no personal data from anyone, including children.</p>
+
+<h2 id="changes">Changes to this policy</h2>
+<p>If the policy changes materially, we will update this page and the revision date above.</p>
+
+<h2 id="contact">Contact</h2>
+<p>For privacy questions, write to: <a href="mailto:apobri.support@icloud.com">apobri.support@icloud.com</a> (publisher: RuiTang Young).</p>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

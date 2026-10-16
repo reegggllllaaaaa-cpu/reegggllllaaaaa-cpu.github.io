@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support: contact, FAQ and diagnostics | Apobri</title>
+<meta name="description" content="How to contact Apobri support, frequently asked questions, how to create and send a diagnostics bundle (what it contains and what it does not), and known limitations.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="Support: contact, FAQ and diagnostics | Apobri">
+<meta property="og:description" content="How to contact Apobri support, frequently asked questions, how to create and send a diagnostics bundle (what it contains and what it does not), and known limitations.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="../support.html">
+<link rel="alternate" hreflang="en" href="support.html">
+<link rel="alternate" hreflang="x-default" href="../support.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html" aria-current="page">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <a class="lang" href="../support.html" hreflang="zh-Hant" lang="zh-Hant" aria-label="切換為繁體中文">繁體中文</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<h1>Support</h1>
+<p class="lead">First try the <a href="quickstart.html#trouble">troubleshooting in Get started</a> and the FAQ below. If that does not solve it, send us a diagnostics bundle.</p>
+
+<h2 id="contact">Contact</h2>
+<p>Email: <a href="mailto:apobri.support@icloud.com">apobri.support@icloud.com</a></p>
+<p class="meta">Please tell us your Windows version, iPad model and iPadOS version, what you did, what you saw, and attach the diagnostics bundle (below).</p>
+
+<h2 id="faq">FAQ</h2>
+<details><summary>Do I need an account?</summary><p>No. Apobri has no account system.</p></details>
+<details><summary>Can I use it away from home?</summary><p>Yes, with Tailscale: install it on the PC and the iPad and sign in to the same account. Apobri itself has no cloud relay and uses no STUN/TURN, so only a local network or a private network you set up yourself (such as Tailscale) is supported. Tailscale is not part of Apobri; you install it yourself and its own terms and privacy policy apply.</p></details>
+<details><summary>Why do I have to press Allow on the PC the first time?</summary><p>So that only devices you approve can see and control the PC. After Allow, the device&rsquo;s key is stored (encrypted) on the PC and you do not need the pairing code again.</p></details>
+<details><summary>Is there sound?</summary><p>Yes, but it is new and not yet verified on a real iPad: the Host sends Windows system sound to the iPad as Opus, over the WebRTC transport only (the WebSocket / HEVC transport has no sound). It captures only while an iPad is connected and its Sound switch is on; local playback is unaffected. Latency and audio/video sync have not been measured.</p></details>
+<details><summary>Which devices are supported?</summary><p>Clients are iPad and iPhone (iPadOS/iOS 17.0 or later); the controlled computer is Windows 10 or 11. There is no Mac, Android or Linux version.</p></details>
+<details><summary>How do I revoke a device?</summary><p>On the PC, open the pairing page and revoke it in the device list. Or use the command line: <code>AppleBridge.Host.exe --devices</code> to list, <code>AppleBridge.Host.exe --revoke &lt;id-prefix&gt;</code> for one device, <code>--revoke all</code> for all. Connected sessions are dropped immediately.</p></details>
+<details><summary>How do I turn off the &ldquo;nearby computers&rdquo; announcement?</summary><p>Add <code>"Discovery": false</code> to <code>%APPDATA%\AppleBridge\config.json</code> and restart the Host. The iPad then needs the QR code or the address to pair.</p></details>
+<details><summary>Why do program files and folders say AppleBridge?</summary><p>AppleBridge was Apobri&rsquo;s earlier name. The Host&rsquo;s program file name and data folder (for example <code>%APPDATA%\AppleBridge</code>) still use it.</p></details>
+
+<h2 id="diagnostics">Diagnostics bundle: create and send</h2>
+<p>A diagnostics bundle is a zip with the information needed to investigate a problem. A script on your PC builds it, <strong>nothing is uploaded</strong>, and no administrator rights are needed. You decide whether to send it and to whom.</p>
+<h3>How to create it</h3>
+<ol>
+  <li>Start menu &gt; Apobri folder &gt; &ldquo;Collect Apobri diagnostics&rdquo;. (Or run <code>collect-diagnostics.ps1</code> from the <code>scripts</code> folder of the Host installation.)</li>
+  <li>When it finishes, Explorer opens with the file selected: <code>Documents\Apobri-diagnostics\apobri-diagnostics-&lt;time&gt;.zip</code>.</li>
+  <li>Attach the zip to an email to us. <strong>Please look inside first.</strong></li>
+</ol>
+<h3>What it contains</h3>
+<ul>
+  <li><code>summary.txt</code>: Host version and path, Windows build and language, RAM, GPU and driver, .NET runtimes, ffmpeg version and available hardware encoders, scheduled-task and firewall-rule status, which programs listen on the Host ports, whether Tailscale is installed, network adapters, the settings of <code>config.json</code> (without the pairing code and inbox token), and paired device names, platform and last-seen time.</li>
+  <li><code>host.log.tail.txt</code>, <code>host.err.log.tail.txt</code>: the last 2000 log lines, redacted.</li>
+  <li><code>capabilities.json</code>: the Host&rsquo;s probe of this PC (encoders, GPU, display modes, measured throughput).</li>
+  <li><code>negotiate.recent.txt</code>: what quality recent connections were given, and why.</li>
+  <li><code>README-redaction.txt</code>: counts of what was removed.</li>
+</ul>
+<h3>What it does not contain (removed, or never read)</h3>
+<ul>
+  <li>The pairing code, inbox token and device keys; <code>devices.json</code> is never read.</li>
+  <li>Long hexadecimal strings (keys or tokens), values such as <code>token=</code>, <code>key=</code>, <code>code=</code>, secret URL query parameters and base64 blobs.</li>
+  <li>Your Windows user name and the PC name (masked in paths).</li>
+  <li>Screen content (the Host never writes frames to disk).</li>
+</ul>
+<div class="note"><strong>Note:</strong> <strong>IP addresses</strong> are kept by default (they are needed to debug LAN and Tailscale problems). Run the script with <code>-RedactIps</code> to mask them as <code>a.b.x.x</code>. <strong>Device names</strong> you typed yourself (such as &ldquo;Sam&rsquo;s iPad&rdquo;) are kept as well, so check before sending. If any known secret value is still present after redaction, the script stops without writing the zip.</div>
+
+<h2 id="limits">Known limitations</h2>
+<p>We would rather tell you up front. Limits of the current version:</p>
+<ul>
+  <li><strong>Not yet fully verified on real devices.</strong> Development happened mostly on Windows; behaviour of the native iPad app on real networks is still being verified, which is why this site gives no performance numbers.</li>
+  <li><strong>One screen is streamed at a time.</strong> The Host lists the connected screens and you pick which one to stream; you cannot view several at once.</li>
+  <li><strong>Extending is opt-in.</strong> By default the iPad shows the content of an existing screen of the PC. To make the iPad an additional Windows monitor, choose Settings &gt; Second screen &gt; Extend in the app (iPad only; the Host on the PC must be a version that supports it).</li>
+  <li><strong>Sound is not yet verified on hardware and is WebRTC-only.</strong> Windows system sound is sent to the iPad as Opus but has not been heard on a real iPad; latency and audio/video sync are unmeasured, and the WebSocket / HEVC transport has no sound.</li>
+  <li><strong>Ctrl+Alt+Del cannot be sent from the iPad.</strong> Windows allows neither capture nor input on the secure desktop (lock screen, sign-in screen, UAC prompts). Apobri can only show a notice such as &ldquo;PC is locked&rdquo;; you must act on the PC. Windows running as administrator cannot be controlled either.</li>
+  <li><strong>Clipboard sync is plain text only</strong> (no images or files yet). Files use the separate file-transfer feature; whole folders are not supported.</li>
+  <li><strong>On a local network, the connection setup is plain HTTP.</strong> Video and the input and data channels are encrypted by WebRTC (DTLS), but the signaling (the handshake that sets up the connection, including the challenge-response when logging in with a pairing code) uses an unencrypted HTTP port (default 8765) on your LAN. Other people on the same network could in principle observe that handshake. <strong>On networks you do not trust (public Wi-Fi, offices), connect through Tailscale instead.</strong> Moving to TLS with certificate pinning is planned.</li>
+  <li><strong>The pairing code is stored as plain text in <code>config.json</code></strong> (readable only by the current Windows user). Other programs running as the same Windows user can read it.</li>
+  <li><strong>No direct connection over the Internet:</strong> there is no STUN/TURN; use Tailscale for remote use.</li>
+  <li><strong>Wake-on-LAN</strong> works only on the same local network and is not yet fully verified on real hardware; see <a href="quickstart.html#wake">Get started</a>.</li>
+</ul>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

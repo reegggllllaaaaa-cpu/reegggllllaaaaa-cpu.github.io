@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apobri: use your Windows PC from your iPad</title>
+<meta name="description" content="Apobri connects your iPad or iPhone directly to your Windows PC: see the screen and use touch, mouse and keyboard. No cloud, no account, no data collection.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="Apobri: use your Windows PC from your iPad">
+<meta property="og:description" content="Apobri connects your iPad or iPhone directly to your Windows PC: see the screen and use touch, mouse and keyboard. No cloud, no account, no data collection.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="../index.html">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="x-default" href="../index.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <a class="lang" href="../index.html" hreflang="zh-Hant" lang="zh-Hant" aria-label="切換為繁體中文">繁體中文</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<section class="hero">
+  <h1>Use your Windows PC from your iPad.<br>Direct connection, no cloud.</h1>
+  <p class="lead">Apobri is an iPad/iPhone app plus a Host for Windows. Over your home network or Tailscale, the two devices exchange the screen and your input directly. There is no account and no relay server.</p>
+  <div class="btns">
+    <a class="btn" href="#download">Download and install</a>
+    <a class="btn ghost" href="quickstart.html">Get started</a>
+  </div>
+</section>
+
+<h2 id="why">Three things that matter</h2>
+<div class="cards">
+  <article class="card">
+    <h3>Built for low latency</h3>
+    <p>The Host uses GPU hardware encoding (Intel QSV, NVIDIA NVENC, AMD AMF) and real-time WebRTC transport. Mouse and keyboard use a dedicated input channel.</p>
+    <p class="meta">We do not publish latency figures here: they will be written only after measuring on real iPads and real networks.</p>
+  </article>
+  <article class="card">
+    <h3>Your iPad as the Windows screen and input</h3>
+    <p>See the whole Windows desktop and control it with touch, mouse, trackpad or a hardware keyboard. Clipboard text and files go both ways.</p>
+    <p class="meta">By default this is remote control of the PC&rsquo;s existing screen; an iPad can also extend Windows as an extra display (Settings &gt; Second screen &gt; Extend). See <a href="support.html#limits">known limitations</a>.</p>
+  </article>
+  <article class="card">
+    <h3>Privacy: a direct connection, no cloud</h3>
+    <p>The screen and your input go only to devices you paired. The Host has no telemetry, analytics or ads, and opens no outbound Internet connection of its own (the auto-update service only asks GitHub for new versions; see the <a href="privacy.html#update">privacy policy</a>). A new device must be approved with <em>Allow</em> on the PC.</p>
+    <p class="meta"><a href="privacy.html">Read the privacy policy</a></p>
+  </article>
+</div>
+
+<h2 id="how">How it works</h2>
+<figure>
+  <svg viewBox="0 0 720 300" role="img" aria-labelledby="dg-t dg-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-t">How Apobri connects</title>
+  <desc id="dg-d">An iPad and a Windows PC connect directly over the same local network or Tailscale, with no cloud server in between.</desc>
+  <style>
+    .box { fill: var(--bg); stroke: var(--text); stroke-width: 2; }
+    .t { fill: var(--text); font: 600 17px system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
+    .s { fill: var(--muted); font: 14px system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
+    .ln { stroke: var(--accent); stroke-width: 4; fill: none; }
+    .dash { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 6; fill: none; }
+    .ah { fill: var(--accent); }
+  </style>
+  <rect class="box" x="30" y="70" width="190" height="120" rx="14"/>
+  <text class="t" x="125" y="115" text-anchor="middle">iPad / iPhone</text>
+  <text class="s" x="125" y="145" text-anchor="middle">Apobri app</text>
+  <rect class="box" x="500" y="70" width="190" height="120" rx="14"/>
+  <text class="t" x="595" y="115" text-anchor="middle">Windows PC</text>
+  <text class="s" x="595" y="145" text-anchor="middle">Apobri Host</text>
+  <path class="ln" d="M226 130 H494"/>
+  <path class="ah" d="M220 130 l14 -8 v16 z"/>
+  <path class="ah" d="M500 130 l-14 -8 v16 z"/>
+  <text class="t" x="360" y="112" text-anchor="middle">Encrypted WebRTC, direct</text>
+  <text class="s" x="360" y="156" text-anchor="middle">screen, input, clipboard, files</text>
+  <path class="dash" d="M125 200 V236 H595 V200"/>
+  <text class="s" x="360" y="258" text-anchor="middle">Same local network, or a Tailscale private network</text>
+  <text class="s" x="360" y="30" text-anchor="middle">No cloud, no account, no relay server</text>
+  <path class="dash" d="M300 42 H420"/>
+</svg>
+  <figcaption>The screen and your input travel only between the two devices you paired.</figcaption>
+</figure>
+<p>After you install the Host on your PC it shows a pairing page (QR code and pairing code). On the iPad you scan the code or pick the PC under &ldquo;Nearby computers&rdquo;, then press <em>Allow</em> on the PC. After that the same iPad does not need the code again. Away from home, sign in to the same Tailscale network on both devices.</p>
+
+<h2 id="download">Download and install</h2>
+<div class="cards">
+  <article class="card">
+    <h3>iPad / iPhone app</h3>
+    <p>Get Apobri from the App Store. Requires iPadOS or iOS 17.0 or later.</p>
+    <p><a class="btn" href="#" data-todo="app-store">App Store (coming soon)</a></p>
+  </article>
+  <article class="card">
+    <h3>Windows Host</h3>
+    <p>Run the installer on the Windows PC you want to control (Windows 10 version 2004 or later, 64-bit). It asks for administrator permission <strong>once</strong> and installs the Host, the notification-area icon, the background service (lock screen, virtual display, automatic updates) and firewall rules (home networks and Tailscale only). When it finishes, Apobri starts and the pairing page with a QR code opens: scan it with Apobri on your iPad or iPhone.</p>
+    <p><a class="btn" href="https://github.com/reegggllllaaaaa-cpu/reegggllllaaaaa-cpu.github.io/releases/download/host-installer-v1.0.0/Apobri-Setup-1.0.0.exe">Download the Windows installer</a></p>
+    <p><strong>If you see &ldquo;Windows protected your PC&rdquo;:</strong> the installer is not code-signed yet, so Microsoft Defender SmartScreen shows this blue window. Click <strong>More info</strong>, check that the file name is <code>Apobri-Setup-&hellip;exe</code>, then click <strong>Run anyway</strong>. A SHA-256 checksum is published next to the download (check it with PowerShell <code>Get-FileHash</code>).</p>
+    <p>To uninstall: Windows Settings &rarr; Apps &rarr; Installed apps &rarr; Apobri &rarr; Uninstall. This removes the service, the virtual display driver and the firewall rules, and asks whether to keep your paired devices and settings.</p>
+  </article>
+</div>
+
+<h2 id="requirements">System requirements</h2>
+<div class="tablewrap"><table>
+  <tr><th scope="row">Windows PC</th><td>Windows 10 or Windows 11. A GPU with hardware H.264 / HEVC encoding is required: Intel (QSV), NVIDIA (NVENC) or AMD (AMF) (almost every recent laptop and desktop has one). PCs without a hardware encoder (for example some virtual machines) cannot send the screen. The Host uses ffmpeg for video encoding; see <a href="licenses.html">Licenses</a>.</td></tr>
+  <tr><th scope="row">iPad / iPhone</th><td>iPadOS 17.0 or iOS 17.0 or later. Local Network permission is needed on the first connection.</td></tr>
+  <tr><th scope="row">Network</th><td>The iPad and the PC on the same local network, or Tailscale installed and signed in on both. Other routes over the Internet are not supported (there is no STUN or TURN).</td></tr>
+</table></div>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

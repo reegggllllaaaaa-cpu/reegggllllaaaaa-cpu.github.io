@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支援：聯絡、常見問題與診斷包 | Apobri</title>
+<meta name="description" content="Apobri 的聯絡方式、常見問題、如何產生並回報診斷包（包含與不包含哪些內容），以及目前已知的限制。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="支援：聯絡、常見問題與診斷包 | Apobri">
+<meta property="og:description" content="Apobri 的聯絡方式、常見問題、如何產生並回報診斷包（包含與不包含哪些內容），以及目前已知的限制。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:locale:alternate" content="en_US">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="support.html">
+<link rel="alternate" hreflang="en" href="en/support.html">
+<link rel="alternate" hreflang="x-default" href="support.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="主要選單"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html" aria-current="page">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <a class="lang" href="en/support.html" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<h1>支援</h1>
+<p class="lead">遇到問題時，先看<a href="quickstart.html#trouble">快速上手的問題排除</a>與下方常見問題；仍無法解決，請附上診斷包寄給我們。</p>
+
+<h2 id="contact">聯絡我們</h2>
+<p>Email：<a href="mailto:apobri.support@icloud.com">apobri.support@icloud.com</a></p>
+<p class="meta">回信時請說明：電腦的 Windows 版本、iPad 型號與 iPadOS 版本、你做了什麼、看到什麼，以及診斷包（見下）。</p>
+
+<h2 id="faq">常見問題</h2>
+<details><summary>需要註冊帳號嗎？</summary><p>不需要。Apobri 沒有帳號系統。</p></details>
+<details><summary>可以在外面用嗎？</summary><p>可以，但要用 Tailscale：電腦與 iPad 都安裝 Tailscale 並登入同一個帳號。Apobri 本身沒有雲端中繼，也不使用 STUN／TURN，所以只支援區域網路或 Tailscale 這類你自己建立的私人網路。Tailscale 不隨附於 Apobri，需自行安裝，並適用 Tailscale 自己的條款與隱私政策。</p></details>
+<details><summary>為什麼第一次連線要在電腦按「允許」？</summary><p>這是為了確保只有你同意的裝置能看到並控制這台電腦。按下允許後，這台裝置的金鑰會加密存在電腦上，之後不需要再輸入配對碼。</p></details>
+<details><summary>有聲音嗎？</summary><p>有，但還很新、尚未在真的 iPad 上驗證：Host 會把 Windows 的系統聲音以 Opus 傳到 iPad，只在 WebRTC 傳輸時有效（WebSocket／HEVC 傳輸沒有聲音）。只有在 iPad 已連線且「聲音」開關開著時才會擷取，電腦本機照常出聲。延遲與音畫同步還沒有實測。</p></details>
+<details><summary>支援哪些裝置？</summary><p>用戶端是 iPad 與 iPhone（iPadOS／iOS 17.0 以上）；被操作端是 Windows 10／11 電腦。目前沒有 Mac、Android 或 Linux 版。</p></details>
+<details><summary>如何撤銷一台裝置？</summary><p>在電腦上開配對頁，於裝置清單撤銷；或用命令列 <code>AppleBridge.Host.exe --devices</code> 列出、<code>AppleBridge.Host.exe --revoke &lt;編號開頭&gt;</code> 撤銷單一裝置，<code>--revoke all</code> 撤銷全部。已連線的工作階段會立刻中斷。</p></details>
+<details><summary>怎麼關閉「附近的電腦」廣播？</summary><p>在 <code>%APPDATA%\AppleBridge\config.json</code> 加入 <code>"Discovery": false</code> 後重新啟動 Host。之後 iPad 需用 QR Code 或手動輸入位址配對。</p></details>
+<details><summary>為什麼程式檔案和資料夾叫 AppleBridge？</summary><p>Apobri 的前身名稱是 AppleBridge，Host 的程式檔名與資料夾（例如 <code>%APPDATA%\AppleBridge</code>）目前仍沿用舊稱。</p></details>
+
+<h2 id="diagnostics">診斷包：產生與回報</h2>
+<p>診斷包是一個 zip，把排查問題需要的資訊整理在一起。它由電腦上的腳本產生，<strong>不會上傳任何東西</strong>，也不需要系統管理員權限；要不要寄出、寄給誰由你決定。</p>
+<h3>怎麼產生</h3>
+<ol>
+  <li>開始功能表 &gt; Apobri 資料夾 &gt; 「Collect Apobri diagnostics」。（或在 Host 安裝資料夾的 <code>scripts</code> 資料夾執行 <code>collect-diagnostics.ps1</code>。）</li>
+  <li>完成後檔案管理員會開啟，檔案位於 <code>文件\Apobri-diagnostics\apobri-diagnostics-&lt;時間&gt;.zip</code>。</li>
+  <li>把 zip 附在 Email 寄給我們。<strong>寄出前建議先打開看看。</strong></li>
+</ol>
+<h3>包含什麼</h3>
+<ul>
+  <li><code>summary.txt</code>：Host 版本與路徑、Windows 版本與語言、記憶體、顯示卡與驅動、.NET 版本、ffmpeg 版本與可用的硬體編碼器、工作排程與防火牆規則狀態、哪些程式在監聽 Host 的連接埠、是否安裝 Tailscale、網路介面卡、<code>config.json</code> 的設定（已移除配對碼與 Inbox Token）、已配對裝置的名稱／平台／最後連線時間。</li>
+  <li><code>host.log.tail.txt</code>、<code>host.err.log.tail.txt</code>：記錄檔最後 2000 行（已遮蔽）。</li>
+  <li><code>capabilities.json</code>：Host 對這台電腦的能力探測結果（編碼器、顯示卡、顯示模式、實測吞吐量）。</li>
+  <li><code>negotiate.recent.txt</code>：最近幾次連線被給予什麼畫質，以及原因。</li>
+  <li><code>README-redaction.txt</code>：遮蔽了哪些東西的統計。</li>
+</ul>
+<h3>不包含（已遮蔽或根本不讀取）</h3>
+<ul>
+  <li>配對碼與 Inbox Token、裝置金鑰；<code>devices.json</code> 完全不會被讀取。</li>
+  <li>長十六進位字串（金鑰或權杖）、<code>token=</code>／<code>key=</code>／<code>code=</code> 之類的值、網址中的密碼參數、base64 內容。</li>
+  <li>你的 Windows 使用者名稱與電腦名稱（路徑中的會被遮蔽）。</li>
+  <li>螢幕畫面（Host 從不把畫面寫入磁碟）。</li>
+</ul>
+<div class="note"><strong>請注意：</strong>預設會保留<strong>IP 位址</strong>（排查區網或 Tailscale 問題需要）；若不想提供，可在執行腳本時加上 <code>-RedactIps</code>，IP 會被遮成 <code>a.b.x.x</code>。你自己取的<strong>裝置名稱</strong>（例如「小明的 iPad」）也會保留，寄出前請看一下。腳本若發現任何已知機密值在遮蔽後仍然存在，會中止而不產生 zip。</div>
+
+<h2 id="limits">已知限制</h2>
+<p>我們寧可事先講清楚。以下是目前版本的限制：</p>
+<ul>
+  <li><strong>尚未有完整的實機驗證。</strong>開發主要在 Windows 上進行；iPad 原生 App 與真實網路環境下的表現還在驗證中，所以本站不提供效能數字。</li>
+  <li><strong>一次串流一個螢幕。</strong>Host 會列出接上的螢幕，可選擇要串流哪一個；不能同時看多個螢幕。</li>
+  <li><strong>延伸螢幕要自己開。</strong>預設 iPad 顯示的是電腦既有螢幕的內容；要讓 iPad 成為 Windows 多出來的螢幕，在 App 設定的「第二螢幕」選「延伸」（只有 iPad，電腦端 Host 也要是支援這項功能的版本）。</li>
+  <li><strong>聲音尚未實機驗證，且只有 WebRTC 傳輸有。</strong>Windows 系統聲音會以 Opus 傳到 iPad，但還沒有在真的 iPad 上聽過；延遲與音畫同步未測，WebSocket／HEVC 傳輸沒有聲音。</li>
+  <li><strong>Ctrl+Alt+Del 無法從 iPad 送出。</strong>鎖定畫面、登入畫面、UAC 提示等「安全桌面」，Windows 不允許擷取與輸入，Apobri 只能顯示「電腦已鎖定」之類的說明，需在電腦上操作。以系統管理員身分執行的視窗也無法被操作。</li>
+  <li><strong>剪貼簿目前只同步純文字</strong>（尚未同步圖片與檔案）。檔案傳輸用獨立的傳檔功能，不支援整個資料夾。</li>
+  <li><strong>區域網路上的連線建立階段是明文 HTTP。</strong>畫面、輸入與資料通道都經 WebRTC 加密（DTLS），但「信令」（建立連線的握手，含以配對碼登入時的挑戰回應）在家用網路上走未加密的 HTTP 連接埠（預設 8765）。同一個網路上的其他人理論上可以看到這段握手。<strong>在不信任的網路（公共 Wi-Fi、辦公室）上，建議改用 Tailscale 連線</strong>，並留意電腦 Host 設定。我們正在規劃改為 TLS 並釘選憑證。</li>
+  <li><strong>配對碼存在 <code>config.json</code> 為純文字</strong>（僅限目前 Windows 使用者讀取）。同一個 Windows 帳號下的其他程式可以讀到它。</li>
+  <li><strong>不支援經由網際網路的直連</strong>：沒有 STUN／TURN；遠端使用請用 Tailscale。</li>
+  <li><strong>喚醒（Wake-on-LAN）</strong>只在同一個區網有效，且尚未完整實機驗證，見<a href="quickstart.html#wake">快速上手</a>。</li>
+</ul>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

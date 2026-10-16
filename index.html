@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apobri：用 iPad 操作你的 Windows 電腦</title>
+<meta name="description" content="Apobri 讓 iPad 與 iPhone 直接連到你的 Windows 電腦，看畫面、用觸控、滑鼠與鍵盤操作。不經雲端、不需帳號、不蒐集資料。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="Apobri：用 iPad 操作你的 Windows 電腦">
+<meta property="og:description" content="Apobri 讓 iPad 與 iPhone 直接連到你的 Windows 電腦，看畫面、用觸控、滑鼠與鍵盤操作。不經雲端、不需帳號、不蒐集資料。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:locale:alternate" content="en_US">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="index.html">
+<link rel="alternate" hreflang="en" href="en/index.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="主要選單"><a href="index.html" aria-current="page">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <a class="lang" href="en/index.html" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<section class="hero">
+  <h1>用 iPad 操作你的 Windows 電腦，<br>直接連線，不經雲端。</h1>
+  <p class="lead">Apobri 由 iPad／iPhone App 與安裝在 Windows 的 Host 組成。在家用網路或 Tailscale 上，兩個裝置之間直接傳送畫面與輸入，沒有帳號、沒有中繼伺服器。</p>
+  <div class="btns">
+    <a class="btn" href="#download">下載與安裝</a>
+    <a class="btn ghost" href="quickstart.html">快速上手</a>
+  </div>
+</section>
+
+<h2 id="why">三個重點</h2>
+<div class="cards">
+  <article class="card">
+    <h3>以低延遲為首要目標</h3>
+    <p>Host 用 GPU 硬體編碼（Intel QSV、NVIDIA NVENC、AMD AMF），透過 WebRTC 即時傳送，滑鼠與鍵盤另走專用的輸入通道。</p>
+    <p class="meta">我們不在這裡公布延遲數字：數字要在真實的 iPad 與網路上量測後才會寫。</p>
+  </article>
+  <article class="card">
+    <h3>iPad 變成 Windows 的畫面與輸入</h3>
+    <p>看到完整的 Windows 桌面，用觸控、滑鼠、觸控板或實體鍵盤操作；剪貼簿文字與檔案可雙向傳送。</p>
+    <p class="meta">預設是遠端操作電腦現有的螢幕；iPad 也可以在設定的「第二螢幕」選「延伸」，當 Windows 多出來的螢幕。見<a href="support.html#limits">已知限制</a>。</p>
+  </article>
+  <article class="card">
+    <h3>隱私：不經雲端的直連</h3>
+    <p>畫面與輸入只傳給你配對過的裝置。Host 沒有遙測、使用分析或廣告，也不主動連上網際網路（自動更新服務只向 GitHub 查詢新版，見<a href="privacy.html#update">隱私權政策</a>）。新裝置第一次連線，必須在電腦上按「允許」。</p>
+    <p class="meta"><a href="privacy.html">閱讀隱私權政策</a></p>
+  </article>
+</div>
+
+<h2 id="how">運作方式</h2>
+<figure>
+  <svg viewBox="0 0 720 300" role="img" aria-labelledby="dg-t dg-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-t">Apobri 連線架構示意圖</title>
+  <desc id="dg-d">iPad 與 Windows 電腦透過同一個區域網路或 Tailscale 直接連線，中間沒有雲端伺服器。</desc>
+  <style>
+    .box { fill: var(--bg); stroke: var(--text); stroke-width: 2; }
+    .t { fill: var(--text); font: 600 17px system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
+    .s { fill: var(--muted); font: 14px system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
+    .ln { stroke: var(--accent); stroke-width: 4; fill: none; }
+    .dash { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 6; fill: none; }
+    .ah { fill: var(--accent); }
+  </style>
+  <rect class="box" x="30" y="70" width="190" height="120" rx="14"/>
+  <text class="t" x="125" y="115" text-anchor="middle">iPad／iPhone</text>
+  <text class="s" x="125" y="145" text-anchor="middle">Apobri App</text>
+  <rect class="box" x="500" y="70" width="190" height="120" rx="14"/>
+  <text class="t" x="595" y="115" text-anchor="middle">Windows 電腦</text>
+  <text class="s" x="595" y="145" text-anchor="middle">Apobri Host</text>
+  <path class="ln" d="M226 130 H494"/>
+  <path class="ah" d="M220 130 l14 -8 v16 z"/>
+  <path class="ah" d="M500 130 l-14 -8 v16 z"/>
+  <text class="t" x="360" y="112" text-anchor="middle">加密的 WebRTC 直連</text>
+  <text class="s" x="360" y="156" text-anchor="middle">畫面、輸入、剪貼簿、檔案</text>
+  <path class="dash" d="M125 200 V236 H595 V200"/>
+  <text class="s" x="360" y="258" text-anchor="middle">同一個區域網路，或 Tailscale 私人網路</text>
+  <text class="s" x="360" y="30" text-anchor="middle">沒有雲端、帳號或中繼伺服器</text>
+  <path class="dash" d="M300 42 H420"/>
+</svg>
+  <figcaption>畫面與輸入只在你配對過的兩個裝置之間傳送。</figcaption>
+</figure>
+<p>在電腦上安裝 Host 後，它會顯示配對頁（QR Code 與配對碼）。iPad 掃描或選擇「附近的電腦」配對，你在電腦上按「允許」，之後同一台 iPad 就不必再輸入配對碼。人在外面時，兩邊都登入同一個 Tailscale 網路即可連線。</p>
+
+<h2 id="download">下載與安裝</h2>
+<div class="cards">
+  <article class="card">
+    <h3>iPad／iPhone App</h3>
+    <p>在 App Store 下載 Apobri。需要 iPadOS 或 iOS 17.0 以上。</p>
+    <p><a class="btn" href="#" data-todo="app-store">App Store（即將上架）</a></p>
+  </article>
+  <article class="card">
+    <h3>Windows Host</h3>
+    <p>在要被操作的 Windows 電腦上執行安裝程式（Windows 10 2004 以上、64 位元）。安裝只會跳出<strong>一次</strong>系統管理員授權，一次裝好 Host、通知區域圖示、背景服務（鎖定畫面、虛擬螢幕、自動更新）與防火牆規則（只對家用網路與 Tailscale 開放）。裝完會自動啟動，並開啟顯示 QR Code 的配對頁，用 iPad／iPhone 的 Apobri 掃描即可配對。</p>
+    <p><a class="btn" href="https://github.com/reegggllllaaaaa-cpu/reegggllllaaaaa-cpu.github.io/releases/download/host-installer-v1.0.0/Apobri-Setup-1.0.0.exe">下載 Windows 安裝程式</a></p>
+    <p><strong>如果出現「Windows 已保護您的電腦」：</strong>安裝程式目前還沒有程式碼簽章，Microsoft Defender SmartScreen 會顯示這個藍色視窗。請按<strong>「其他資訊」</strong>，確認檔名是 <code>Apobri-Setup-…exe</code>，再按<strong>「仍要執行」</strong>。下載頁旁附有 SHA-256 檢查碼，可用 PowerShell 的 <code>Get-FileHash</code> 核對。</p>
+    <p>解除安裝：Windows「設定 → 應用程式 → 已安裝的應用程式 → Apobri → 解除安裝」，會移除服務、虛擬螢幕驅動與防火牆規則，並詢問是否保留已配對裝置等資料。</p>
+  </article>
+</div>
+
+<h2 id="requirements">系統需求</h2>
+<div class="tablewrap"><table>
+  <tr><th scope="row">Windows 電腦</th><td>Windows 10 或 Windows 11。需要有硬體 H.264／HEVC 編碼的 GPU：Intel（QSV）、NVIDIA（NVENC）或 AMD（AMF）任一種（近年的筆電與桌機幾乎都有）。沒有硬體編碼器的電腦（例如部分虛擬機）無法傳送畫面。Host 的影像編碼使用 ffmpeg，詳見<a href="licenses.html">授權與第三方聲明</a>。</td></tr>
+  <tr><th scope="row">iPad／iPhone</th><td>iPadOS 17.0 或 iOS 17.0 以上。第一次連線時需允許「區域網路」權限。</td></tr>
+  <tr><th scope="row">網路</th><td>iPad 與電腦在同一個區域網路，或兩邊都安裝並登入 Tailscale。不支援經由網際網路的其他連線方式（沒有 STUN／TURN）。</td></tr>
+</table></div>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

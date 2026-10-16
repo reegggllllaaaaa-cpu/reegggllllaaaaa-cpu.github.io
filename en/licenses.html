@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Licenses and third-party notices | Apobri</title>
+<meta name="description" content="A summary of the open-source and third-party components used by Apobri, their licenses, and how ffmpeg is used.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="Licenses and third-party notices | Apobri">
+<meta property="og:description" content="A summary of the open-source and third-party components used by Apobri, their licenses, and how ffmpeg is used.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="../licenses.html">
+<link rel="alternate" hreflang="en" href="licenses.html">
+<link rel="alternate" hreflang="x-default" href="../licenses.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html" aria-current="page">Licenses</a></nav>
+    <a class="lang" href="../licenses.html" hreflang="zh-Hant" lang="zh-Hant" aria-label="切換為繁體中文">繁體中文</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<h1>Licenses and third-party notices</h1>
+<p class="meta">Last revised: 2026-10-13. This page is a summary, not legal advice. The full list and license texts are installed with the Host in its <code>licenses</code> folder.</p>
+
+<h2 id="host">Components used by the Windows Host</h2>
+<div class="tablewrap"><table>
+  <tr><th>Component</th><th>Used for</th><th>License</th></tr>
+  <tr><td>SIPSorcery, SIPSorceryMedia.Abstractions 10.0.17</td><td>WebRTC, RTP</td><td>BSD-3-Clause, plus additional use terms stated by that project; see the SIPSorcery license text that ships with the Host</td></tr>
+  <tr><td>QRCoder 1.8.0</td><td>Pairing QR code</td><td>MIT</td></tr>
+  <tr><td>BouncyCastle.Cryptography 2.7.0</td><td>Cryptography</td><td>MIT</td></tr>
+  <tr><td>Concentus 2.2.2</td><td>Opus audio codec (managed)</td><td>BSD-3-Clause style</td></tr>
+  <tr><td>NAudio.Wasapi, NAudio.Core 2.2.1</td><td>Capturing Windows system sound (WASAPI loopback)</td><td>MIT</td></tr>
+  <tr><td>Vortice.Direct3D11 / DXGI / D3DCompiler 3.8.3 and related packages</td><td>Screen capture (Direct3D / DXGI)</td><td>MIT</td></tr>
+  <tr><td>System.Security.Cryptography.ProtectedData, System.Drawing.Common and other Microsoft packages</td><td>DPAPI, drawing</td><td>MIT</td></tr>
+  <tr><td>DnsClient, Makaretu.Dns / Dns.Multicast, IPNetwork2, SimpleBase, Common.Logging, websocket-sharp (SIPSorcery fork), SharpGen.Runtime</td><td>Network discovery and support libraries</td><td>Apache-2.0, MIT or BSD depending on the project (texts included)</td></tr>
+  <tr><td>Microsoft .NET 10 runtime, ASP.NET Core and Windows Desktop runtimes (Microsoft&rsquo;s official installers inside the setup, run only when missing)</td><td>Runtime</td><td>MIT (Microsoft)</td></tr>
+  <tr><td>Virtual Display Driver (MttVDD, driver version 11.30.4.434, 2024-12-24)</td><td>Virtual display (fill the iPad / extended desktop)</td><td>MIT (VirtualDrivers / Mike the Tech; driver signed by SignPath Foundation)</td></tr>
+</table></div>
+
+<h2 id="ffmpeg">ffmpeg</h2>
+<p>The Apobri Host neither contains nor links the ffmpeg libraries. It starts <code>ffmpeg.exe</code> as a <strong>separate program</strong>, exchanges video data with it through pipes, and uses it as the video encoder. ffmpeg is used by the Host on the user&rsquo;s PC.</p>
+<p>The installer ships an <strong>LGPL build</strong> of ffmpeg (BtbN FFmpeg-Builds, win64-lgpl, version n9.0.2-28-g669f5ab083, built without <code>--enable-gpl</code> and <code>--enable-nonfree</code>), licensed under the GNU LGPL version 3 or later. The license texts, build configuration, source locations (<a href="https://github.com/FFmpeg/FFmpeg/tree/669f5ab083c7732c10f1ce9e4f1915960dd88457">FFmpeg source</a>, <a href="https://github.com/BtbN/FFmpeg-Builds/tree/autobuild-2026-10-15-13-03">build scripts</a>) and a written offer for the source code are in the <code>licenses\ffmpeg</code> folder of the installation. You may replace <code>ffmpeg.exe</code> with your own build.</p>
+
+<h2 id="ios">iPad / iPhone app</h2>
+<p>The iPad app uses a WebRTC library (a prebuilt package via Swift Package Manager, under a BSD-style license). It runs on your device and does not send your data to any third party.</p>
+
+<h2 id="others">Software that is used but not shipped</h2>
+<ul>
+  <li><strong>Tailscale</strong>: if the Host finds Tailscale installed on the PC it queries its status read-only. Tailscale is not part of Apobri; you install it yourself.</li>
+  <li>Apple, iPad, iPhone, Windows, Tailscale and other names belong to their owners. They are used here only to describe compatibility and imply no partnership or endorsement.</li>
+</ul>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

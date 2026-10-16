@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>隱私權政策 | Apobri</title>
+<meta name="description" content="Apobri 不蒐集你的資料：沒有帳號、遙測、分析或廣告。本頁說明 App 與 Windows Host 各存什麼、各項權限的用途與第三方元件。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="隱私權政策 | Apobri">
+<meta property="og:description" content="Apobri 不蒐集你的資料：沒有帳號、遙測、分析或廣告。本頁說明 App 與 Windows Host 各存什麼、各項權限的用途與第三方元件。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:locale:alternate" content="en_US">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="privacy.html">
+<link rel="alternate" hreflang="en" href="en/privacy.html">
+<link rel="alternate" hreflang="x-default" href="privacy.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="主要選單"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html" aria-current="page">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <a class="lang" href="en/privacy.html" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<h1>隱私權政策</h1>
+<p class="meta">最後修訂：2026-10-16。適用範圍：Apobri iPad／iPhone App 與 Apobri Windows Host。</p>
+
+<h2 id="short">簡短版</h2>
+<ul>
+  <li>Apobri <strong>不蒐集你的任何資料</strong>。沒有帳號、遙測、使用分析、當機回報或廣告，也沒有任何追蹤。開發者不會收到你的畫面、輸入、檔案或裝置資訊。</li>
+  <li>畫面、輸入、剪貼簿文字與檔案，<strong>只會傳給你配對過的裝置</strong>，經由你的家用網路、Tailscale 或你自己設定的連線。沒有 Apobri 的雲端伺服器或中繼伺服器。</li>
+  <li>Windows Host 本身不會主動連上網際網路。唯一的例外是 Apobri 服務的<a href="#update">自動更新檢查</a>：只向 GitHub 查詢有沒有新版 Host，不送出任何關於你的資料。</li>
+  <li>所有資料都存在你自己的裝置上，你可以隨時撤銷裝置或刪除資料。</li>
+</ul>
+
+<h2 id="collect">我們蒐集什麼</h2>
+<p>什麼都不蒐集。iPad App 的隱私資訊清單（Privacy Manifest）宣告：不追蹤、沒有追蹤網域、沒有蒐集任何資料類型。</p>
+
+<h2 id="flow">資料如何傳送</h2>
+<p>你的 iPad 與 Windows 電腦直接連線。畫面、輸入與資料通道使用 WebRTC，並經 DTLS 加密。Host 建立連線時不使用任何 STUN／TURN 伺服器，所以也沒有第三方得知你的位址。</p>
+<p>需要誠實說明的一點：建立連線用的「信令」在區域網路上目前走未加密的 HTTP 連接埠（預設 8765），其中包含以配對碼登入時的挑戰回應（配對碼本身不會明文送出）。在不信任的網路上，建議使用 Tailscale。Host 的 HTTPS 連接埠（8766）使用自簽憑證，App 在 QR 配對時會釘選它的指紋。</p>
+<p>Host 只在私人位址上監聽：本機、區域網路（10.x、172.16–31.x、192.168.x）與 Tailscale（100.64.x–100.127.x）。配對頁與裝置管理功能只接受來自這台電腦本機的請求。</p>
+
+<h2 id="update">自動更新檢查（Windows）</h2>
+<p>安裝了 Apobri 服務（負責自動更新 Host）時，服務每 6 小時、以及你在 App 裡按「檢查更新」／「更新」時，會以 HTTPS 向 GitHub（<code>api.github.com</code> 與 GitHub 的下載伺服器）查詢一個公開儲存庫的最新 Apobri Host 版本。請求裡除了任何網路請求都會帶的資訊（你的 IP 位址、<code>User-Agent: ApobriUpdater/1</code>）之外，不包含任何關於你或你電腦的資料。下載的更新套件必須通過服務內建的 Apobri 金鑰簽章驗證才會安裝。GitHub 是獨立的第三方服務，適用其自己的隱私政策。</p>
+
+<h2 id="purchases">App 內購買</h2>
+<p>iPad／iPhone App 的免費試用與解鎖都是 Apple 的 App 內購買，由 Apple 處理付款與 Apple ID；我們不會收到你的姓名、Email 或付款資料。App 只向 App Store 確認這台裝置的 Apple ID 是否擁有試用或解鎖項目（以及試用開始的時間）。</p>
+
+<h2 id="stored-app">iPad／iPhone App 存了什麼</h2>
+<ul>
+  <li><strong>鑰匙圈（Keychain）</strong>：這台裝置的配對金鑰與配對憑證。</li>
+  <li><strong>App 本機設定</strong>：已儲存電腦的名稱與位址、連線與輸入偏好。</li>
+  <li>收到的檔案存在 App 內與「檔案」App；只有在你開啟「將收到的照片與影片存到『照片』」選項時，才會存進「照片」。</li>
+</ul>
+<p>這些資料不會離開你的裝置，除非是你在連線中傳給你的電腦。「螢幕廣播」擴充只把你主動開始廣播的畫面與聲音直接送到你輸入的那台電腦，不存檔、不經過任何伺服器。</p>
+
+<h2 id="stored-host">Windows Host 存了什麼</h2>
+<p>全部在你的 Windows 使用者設定檔下的 <code>%APPDATA%\AppleBridge</code>（資料夾名稱沿用舊稱），預設只有你的 Windows 帳號能讀取。</p>
+<div class="tablewrap"><table>
+  <tr><th>檔案</th><th>內容</th><th>保護</th></tr>
+  <tr><td><code>config.json</code></td><td>設定、8 位數配對碼、供 iPhone 捷徑使用的 Inbox Token</td><td>純文字，但存取權限限制為目前的 Windows 使用者</td></tr>
+  <tr><td><code>devices.json</code></td><td>每台已配對裝置：編號、名稱、平台、建立與最後連線時間、驗證用資料</td><td>驗證用資料以 Windows DPAPI（目前使用者範圍）加密；複製到別台電腦或別的使用者無法解開</td></tr>
+  <tr><td><code>host.pfx</code>（及密碼檔）</td><td>Host 自簽的 HTTPS 憑證與私鑰，第一次啟動時產生</td><td>每次安裝隨機密碼，以 DPAPI 保護；檔案權限限制為目前使用者</td></tr>
+  <tr><td><code>host.log</code>、<code>host.err.log</code></td><td>操作記錄：連線時間、裝置名稱與編號、<strong>裝置的 IP 位址</strong>、編碼與網路統計</td><td>純文字，超過 5 MB 輪替。配對碼與 Inbox Token 不會寫入記錄檔</td></tr>
+  <tr><td><code>Downloads\Apobri</code>（舊版為 <code>Downloads\AppleBridge</code>，啟動時自動改名）</td><td>你從 iPad 傳來或傳到 iPad 的檔案</td><td>一般的下載資料夾權限</td></tr>
+</table></div>
+<p>螢幕畫面不會被寫入磁碟：影格直接由 GPU 送到編碼器再送上網路。Host 也會依你的要求設定 Windows 剪貼簿內容。Apobri 不會把這些資料送到任何地方。</p>
+<p>系統聲音（電腦正在播放的內容，可能含私密內容）只在已驗證的 WebRTC 連線期間、且 iPad 的「聲音」開關開著時才擷取，經同一條加密連線傳給該 iPad；不錄音、不寫檔，其他情況完全不開啟音訊裝置。可在 iPad 設定關閉，或在 Host 設定檔設 <code>"Audio": false</code>。</p>
+<p>Host 為了「附近的電腦」功能，會在區域網路上以 mDNS（<code>_apobri._tcp</code>）公告：電腦名稱、私人區網 IPv4 位址、連接埠、憑證指紋（公開資訊）、是否允許配對，以及一個隨機產生的主機識別碼。公告不離開區域網路，也不包含配對碼、金鑰、使用者名稱、檔名或視窗標題。同一個網路上的人可能知道「這台電腦有安裝 Apobri」，但仍然無法連線：新裝置必須在電腦上按「允許」。你可以在 <code>config.json</code> 設 <code>"Discovery": false</code> 關閉。</p>
+<p>Host 會執行的本機輔助程式：<code>ffmpeg.exe</code>（影像編碼）、<code>powershell</code>（顯示通知）、以及（只有已安裝 Tailscale 時）<code>tailscale status --json</code>（唯讀）。它們都不會被指示去連網際網路。</p>
+
+<h2 id="permissions">權限與用途</h2>
+<div class="tablewrap"><table>
+  <tr><th>權限</th><th>用途</th></tr>
+  <tr><td>區域網路</td><td>在你的網路上找到並連線到你的 Windows 電腦（含「附近的電腦」，使用 Bonjour 服務 <code>_apobri._tcp</code>），並顯示與控制它。只在你第一次開始連線（或按「尋找這個網路上的電腦」）時才會詢問；示範模式不需要。沒有此權限就無法連線。</td></tr>
+  <tr><td>相機</td><td>只用來掃描 Host 配對頁上的 QR Code。不拍照、不錄影。</td></tr>
+  <tr><td>麥克風</td><td>只有在你從系統廣播選單開始「螢幕廣播」並打開麥克風按鈕時，才把麥克風聲音送到你的電腦。其他情況不錄音。</td></tr>
+  <tr><td>照片（僅新增）</td><td>只有在你開啟「將收到的照片與影片存到『照片』」時，才會把從電腦傳來的照片與影片存進「照片」。Apobri 不會讀取你的相簿。</td></tr>
+</table></div>
+
+<h2 id="revoke">撤銷與刪除</h2>
+<ul>
+  <li>撤銷一台裝置：電腦上的配對頁 &gt; 裝置清單，或 <code>AppleBridge.Host.exe --revoke &lt;編號開頭&gt;</code>。撤銷全部：<code>AppleBridge.Host.exe --revoke all</code>。已連線的工作階段立刻中斷。</li>
+  <li>刪除所有 Host 資料：解除安裝時選擇一併刪除設定、裝置與記錄，或自行刪除 <code>%APPDATA%\AppleBridge</code>。</li>
+  <li>刪除 App 資料：在 iPad 刪除 Apobri App，其鑰匙圈與本機資料也會隨之移除。</li>
+</ul>
+
+<h2 id="third">第三方元件</h2>
+<p>Apobri 使用開放原始碼元件（例如 Host 的 SIPSorcery、QRCoder、Vortice，iPad App 的 WebRTC 函式庫），並呼叫 ffmpeg 作為影像編碼器。它們都在你的裝置上執行，不會把你的資料送給它們的作者或任何第三方。清單與授權見<a href="licenses.html">授權與第三方聲明</a>。Tailscale（若你自己選擇使用）是獨立的第三方服務，適用其自己的隱私政策。</p>
+
+<h2 id="children">兒童隱私</h2>
+<p>Apobri 不針對兒童，也不蒐集任何人的個人資料，包括兒童。</p>
+
+<h2 id="changes">政策變更</h2>
+<p>若政策有實質變更，我們會更新本頁並修改上方的修訂日期。</p>
+
+<h2 id="contact">聯絡方式</h2>
+<p>隱私相關問題請來信：<a href="mailto:apobri.support@icloud.com">apobri.support@icloud.com</a>（發行者：RuiTang Young）。</p>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>

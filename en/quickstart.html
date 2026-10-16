@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get started: connect in a few minutes | Apobri</title>
+<meta name="description" content="Install the Apobri Host, pair your iPad (QR code, nearby computers or pairing code), press Allow on the PC, and connect. Includes troubleshooting.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="Get started: connect in a few minutes | Apobri">
+<meta property="og:description" content="Install the Apobri Host, pair your iPad (QR code, nearby computers or pairing code), press Allow on the PC, and connect. Includes troubleshooting.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="../quickstart.html">
+<link rel="alternate" hreflang="en" href="quickstart.html">
+<link rel="alternate" hreflang="x-default" href="../quickstart.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="quickstart.html" aria-current="page">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <a class="lang" href="../quickstart.html" hreflang="zh-Hant" lang="zh-Hant" aria-label="切換為繁體中文">繁體中文</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<h1>Get started</h1>
+<p class="lead">The goal is a first connection in a few minutes. You need a Windows PC, an iPad or iPhone, and a network they share (or Tailscale).</p>
+
+<ol class="steps">
+  <li>
+    <h3>Install the Host on Windows</h3>
+    <p>Run <code>Apobri-Setup-x.y.z.exe</code>. The installer follows your Windows language (English or Traditional Chinese) and shows a privacy summary. You can choose <em>start at sign-in</em> (on by default) and <em>firewall rules for the home network and Tailscale</em> (on by default; one administrator prompt, which you can decline, but then the iPad may not reach the PC).</p>
+  </li>
+  <li>
+    <h3>Open the pairing page</h3>
+    <p>The last installer page starts Apobri and opens the pairing page by default. Later, use the Start menu entry &ldquo;Apobri pairing page&rdquo;. The page is visible only on this PC. It shows a QR code, the PC&rsquo;s addresses (Tailscale first, then local network) and an 8-digit pairing code.</p>
+  </li>
+  <li>
+    <h3>Open Apobri on the iPad and pair</h3>
+    <p>The first launch asks for Local Network access; allow it, or the app cannot find your PC. Then pick one:</p>
+    <ul>
+      <li><strong>Scan the QR code</strong>: tap <em>Scan QR</em> and allow the camera (used only to read this QR code).</li>
+      <li><strong>Nearby computers</strong>: PCs on the same local network are listed; tap one to start pairing without typing an address.</li>
+      <li><strong>Type it in</strong>: enter the address and pairing code from the pairing page.</li>
+    </ul>
+  </li>
+  <li>
+    <h3>Press Allow on the PC</h3>
+    <p>The pairing page (or the console window) asks whether to allow this device. <strong>Allow only devices you recognise.</strong> If you do not respond within 120 seconds the request is cancelled; just try again from the iPad.</p>
+  </li>
+  <li>
+    <h3>First connection</h3>
+    <p>After you press Allow, the iPad shows the Windows desktop. The same iPad reconnects later without a code. To remove a device, revoke it in the device list on the pairing page.</p>
+  </li>
+</ol>
+
+<h2 id="trouble">Troubleshooting</h2>
+
+<details id="not-found">
+  <summary>The iPad cannot find or reach my PC</summary>
+  <ul>
+    <li><strong>Same network?</strong> The iPad and the PC must be on the same local network. If the router has &ldquo;AP isolation&rdquo; or &ldquo;client isolation&rdquo; on, devices cannot reach each other.</li>
+    <li><strong>Local Network permission?</strong> In iPad Settings, open Apobri and make sure Local Network is on.</li>
+    <li><strong>Is the PC awake and the Host running?</strong> Open the pairing page from the Start menu again (it waits up to 20 seconds). If it does not open, the Host is not running.</li>
+    <li><strong>Firewall.</strong> If you did not tick the firewall option during setup, Windows Firewall may block the connection. Run the installer again and tick it.</li>
+    <li><strong>Away from home.</strong> There is no cloud relay. Install Tailscale on both devices and sign in to the same account; the pairing page lists the PC&rsquo;s Tailscale address.</li>
+    <li><strong>&ldquo;Nearby computers&rdquo; is empty.</strong> You may be on a different subnet, or discovery was turned off in the PC&rsquo;s <code>config.json</code> (<code>"Discovery": false</code>). Use the QR code or type the address.</li>
+  </ul>
+</details>
+
+<details id="black">
+  <summary>Connected, but the picture is black</summary>
+  <ul>
+    <li>While the PC is <strong>locked</strong>, or shows the sign-in screen, a UAC prompt or the Ctrl+Alt+Del screen, Windows does not allow screen capture. The app shows an explanation instead of video, and recovers by itself after you unlock the PC.</li>
+    <li>If the Host starts but there is no video, the video encoder (ffmpeg) may be missing. The Host log then shows exit code 2 and the Host retries every 2 minutes.</li>
+    <li>Still black: <a href="support.html#diagnostics">create a diagnostics bundle</a> and send it to us.</li>
+  </ul>
+</details>
+
+<details id="wake">
+  <summary>The PC went to sleep: how do I wake it? (Wake-on-LAN)</summary>
+  <p>A sleeping PC cannot be connected to. After you connect, the Host gives the app the details of the PC&rsquo;s physical network adapters so a Wake-on-LAN &ldquo;magic packet&rdquo; can be sent while the PC sleeps. Please know the limits:</p>
+  <ul>
+    <li><strong>It works only on the same local network.</strong> A magic packet is a LAN broadcast. It cannot wake the PC over Tailscale, mobile data or the Internet, and AP isolation on the router blocks it too.</li>
+    <li><strong>Apobri never changes your power or adapter settings.</strong> You set them up in Windows:
+      <ol>
+        <li>Device Manager &gt; Network adapters &gt; your adapter &gt; Properties &gt; Advanced: set &ldquo;Wake on Magic Packet&rdquo; to Enabled.</li>
+        <li>Power Management tab: tick &ldquo;Allow this device to wake the computer&rdquo; and &ldquo;Only allow a magic packet to wake the computer&rdquo;.</li>
+        <li>Only for waking from a full <em>shutdown</em>: enable Wake on LAN in BIOS/UEFI and turn off Windows Fast Startup. Waking from <em>sleep</em> usually does not need these.</li>
+      </ol>
+    </li>
+    <li><strong>Prefer a wired connection.</strong> Wake over Wi-Fi is supported by only a few laptops and drivers.</li>
+    <li>The Host includes a read-only checker, <code>scripts\check-wol.ps1</code>. It changes nothing, needs no administrator rights, and explains in plain words what is and is not set up.</li>
+  </ul>
+  <p class="meta">Waking a real PC from sleep with a real iPad has not been fully verified yet, so treat wake-up as hardware-dependent.</p>
+</details>
+
+<details id="other">
+  <summary>Other: pairing keeps waiting / remove a device</summary>
+  <ul>
+    <li>Pairing keeps waiting: nobody pressed <em>Allow</em> within 120 seconds. Press Allow on the pairing page, or start pairing again on the iPad.</li>
+    <li>A lost or retired iPad: pairing page &gt; device list &gt; revoke; or run <code>AppleBridge.Host.exe --revoke all</code> to revoke every device (the Host&rsquo;s program file still uses the old name AppleBridge).</li>
+  </ul>
+</details>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>
