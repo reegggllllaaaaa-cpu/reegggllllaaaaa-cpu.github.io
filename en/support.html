@@ -39,7 +39,7 @@
 
 <h2 id="faq">FAQ</h2>
 <details><summary>Do I need an account?</summary><p>No. Apobri has no account system.</p></details>
-<details><summary>Can I use it away from home?</summary><p>Yes, with Tailscale: install it on the PC and the iPad and sign in to the same account. Apobri itself has no cloud relay and uses no STUN/TURN, so only a local network or a private network you set up yourself (such as Tailscale) is supported. Tailscale is not part of Apobri; you install it yourself and its own terms and privacy policy apply.</p></details>
+<details id="remote"><summary>Can I use it away from home?</summary><p>Yes, with Tailscale: install it on the PC and on the iPhone or iPad and sign in to the same account. The steps are in <a href="quickstart.html#remote">Get started: use it away from home</a>. Apobri itself has no cloud relay and uses no STUN/TURN, so only a local network or a private network you set up yourself (such as Tailscale) is supported. Tailscale is not part of Apobri; you install it yourself and its own terms and privacy policy apply.</p></details>
 <details id="relay"><summary>The app says &ldquo;Connected through a relay: higher latency&rdquo;. What does it mean?</summary><p>Tailscale could not open a direct path between the PC and your iPad or iPhone, so the traffic goes through one of Tailscale&rsquo;s relay servers (DERP). A relay has less bandwidth and a longer round trip (often 60&ndash;150 ms). When Apobri detects a relay it keeps every picture small enough for the relay and adds the fine detail back once scrolling stops; resolution and frame rate stay the same, so it remains smooth to use, but latency is always higher than on a direct path.</p>
 <p>To get a direct path you can try (none of this is required):</p>
 <ul>

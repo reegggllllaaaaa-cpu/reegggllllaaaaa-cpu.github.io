@@ -61,6 +61,28 @@
   </li>
 </ol>
 
+<h2 id="remote">Use it away from home (Tailscale)</h2>
+<p>Apobri has no cloud server of its own: the screen goes straight between your devices. To reach your PC from another network, put the PC and your iPhone or iPad on the same private network that belongs to you, with the free <a href="https://tailscale.com/">Tailscale</a>. You set it up once, in about five minutes; after that Apobri finds the way by itself.</p>
+<ol class="steps">
+  <li>
+    <h3>Install Tailscale on the PC and sign in</h3>
+    <p>On the PC, open <a href="https://tailscale.com/download/windows">tailscale.com/download/windows</a>, install it and sign in with a Google, Microsoft, Apple or GitHub account (free for personal use). We recommend turning on &ldquo;Run unattended&rdquo; in the menu of the Tailscale icon on the taskbar, so the PC stays reachable after a restart, before anyone signs in to Windows.</p>
+  </li>
+  <li>
+    <h3>Restart the PC once</h3>
+    <p>Only the first time: Apobri uses the network addresses that exist when it starts. If Tailscale was installed while Apobri was already running, restart the PC once and it keeps working from then on. The menu of the Apobri icon on the taskbar shows where you are; when it says &ldquo;Away from home: ready&rdquo; this step is done.</p>
+  </li>
+  <li>
+    <h3>Install Tailscale on the iPhone or iPad with the same account</h3>
+    <p><a href="https://apps.apple.com/app/tailscale/id1470499037">Get Tailscale from the App Store</a>, sign in with <strong>the same account as on the PC</strong>, allow it to add a VPN configuration, and turn it on.</p>
+  </li>
+  <li>
+    <h3>Connect with Apobri once at home</h3>
+    <p>While you are on the same network as the PC, connect with Apobri once (and press Allow to make it a trusted device). Apobri remembers the PC&rsquo;s Tailscale address. Away from home, when the home address does not answer, Apobri switches to Tailscale by itself; there is nothing to type.</p>
+  </li>
+</ol>
+<p class="meta">Tailscale is a separate company&rsquo;s service, not part of Apobri; its own terms and privacy policy apply. Apobri cannot see your Tailscale account. If the app says the connection goes through a relay, see <a href="support.html#relay">this answer</a>.</p>
+
 <h2 id="trouble">Troubleshooting</h2>
 
 <details id="not-found">
@@ -70,7 +92,7 @@
     <li><strong>Local Network permission?</strong> In iPad Settings, open Apobri and make sure Local Network is on.</li>
     <li><strong>Is the PC awake and the Host running?</strong> Open the pairing page from the Start menu again (it waits up to 20 seconds). If it does not open, the Host is not running.</li>
     <li><strong>Firewall.</strong> If you did not tick the firewall option during setup, Windows Firewall may block the connection. Run the installer again and tick it.</li>
-    <li><strong>Away from home.</strong> There is no cloud relay. Install Tailscale on both devices and sign in to the same account; the pairing page lists the PC&rsquo;s Tailscale address.</li>
+    <li><strong>Away from home.</strong> There is no cloud relay, so use Tailscale: follow the four steps in <a href="#remote">Use it away from home</a> once.</li>
     <li><strong>&ldquo;Nearby computers&rdquo; is empty.</strong> You may be on a different subnet, or discovery was turned off in the PC&rsquo;s <code>config.json</code> (<code>"Discovery": false</code>). Use the QR code or type the address.</li>
   </ul>
 </details>

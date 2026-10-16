@@ -39,7 +39,7 @@
 
 <h2 id="faq">常見問題</h2>
 <details><summary>需要註冊帳號嗎？</summary><p>不需要。Apobri 沒有帳號系統。</p></details>
-<details><summary>可以在外面用嗎？</summary><p>可以，但要用 Tailscale：電腦與 iPad 都安裝 Tailscale 並登入同一個帳號。Apobri 本身沒有雲端中繼，也不使用 STUN／TURN，所以只支援區域網路或 Tailscale 這類你自己建立的私人網路。Tailscale 不隨附於 Apobri，需自行安裝，並適用 Tailscale 自己的條款與隱私政策。</p></details>
+<details id="remote"><summary>可以在外面用嗎？</summary><p>可以，用 Tailscale：電腦與 iPhone／iPad 都安裝 Tailscale 並登入同一個帳號，步驟見<a href="quickstart.html#remote">快速上手：在外面也能連</a>。Apobri 本身沒有雲端中繼，也不使用 STUN／TURN，所以只支援區域網路或 Tailscale 這類你自己建立的私人網路。Tailscale 不隨附於 Apobri，需自行安裝，並適用 Tailscale 自己的條款與隱私政策。</p></details>
 <details id="relay"><summary>App 顯示「目前經由中繼連線，延遲較高」是什麼意思？</summary><p>Tailscale 沒辦法在電腦和 iPad／iPhone 之間打通直接的路，只好經由 Tailscale 的中繼伺服器（DERP）轉送。中繼的頻寬較小、來回時間較長（常見 60–150 ms）。Apobri 偵測到中繼時會自動把每一張畫面控制在中繼送得動的大小、捲動停下後再逐步補回細節，解析度與幀率不變，所以仍然可以順暢操作；但延遲一定比直連高。</p>
 <p>想要直連，可以試試（都不是必要的）：</p>
 <ul>
