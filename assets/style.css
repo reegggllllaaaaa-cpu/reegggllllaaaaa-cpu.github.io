@@ -88,6 +88,18 @@ details { border: 1px solid var(--line); border-radius: 10px; padding: 0 14px; m
 summary { cursor: pointer; font-weight: 600; padding: 12px 0; }
 details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 10px; }
 
+/* beta.html: one card per step, labelled parts, disabled invite button */
+.pill { display: inline-block; margin: 0 0 12px; padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--text); font-size: .9rem; font-weight: 600; }
+ol.bsteps { list-style: none; padding: 0; margin: 20px 0; counter-reset: b; display: grid; gap: 16px; }
+ol.bsteps > li { counter-increment: b; position: relative; margin: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-soft); padding: 18px 18px 6px 66px; scroll-margin-top: 72px; }
+ol.bsteps > li::before { content: counter(b); position: absolute; left: 18px; top: 16px; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--accent-text); font-weight: 700; display: grid; place-items: center; }
+ol.bsteps h3 { margin: 4px 0 10px; }
+ol.bsteps .btns { margin: 4px 0 14px; }
+ol.sub { margin: 0 0 14px; }
+.tag { display: inline-block; margin-right: 8px; padding: 1px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--text); font-size: .82rem; font-weight: 700; vertical-align: 1px; }
+.tag.warn { background: var(--warn-bg); border: 1px solid var(--warn-line); }
+.btn.disabled { background: var(--bg); border-color: var(--line); color: var(--muted); cursor: not-allowed; }
+.btn.disabled:hover { filter: none; }
 .note { border: 1px solid var(--warn-line); background: var(--warn-bg); border-radius: 10px; padding: 12px 14px; margin: 16px 0; }
 .todo { border-bottom: 1px dashed var(--muted); }
 
@@ -98,5 +110,9 @@ footer.site nav a { margin-right: 14px; }
 @media (max-width: 560px) {
   main { padding-top: 28px; }
   h2 { margin-top: 36px; }
+  ol.bsteps > li { padding: 16px 14px 4px; }
+  ol.bsteps > li::before { position: static; float: left; width: 30px; height: 30px; margin: 0 10px 0 0; }
+  ol.bsteps h3 { margin-top: 3px; min-height: 30px; }
+  ol.bsteps > li > p:first-of-type { clear: left; }
 }
 @media print { header.site, footer.site .btns { display: none; } }

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>搶先試用 Apobri 測試版 | Apobri</title>
+<meta name="description" content="受邀參加 Apobri 測試的朋友看這裡：安裝 TestFlight、在電腦裝 Apobri、用手機掃 QR 碼配對，大約 5 分鐘，一步一步照著做就好。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apobri">
+<meta property="og:title" content="搶先試用 Apobri 測試版 | Apobri">
+<meta property="og:description" content="受邀參加 Apobri 測試的朋友看這裡：安裝 TestFlight、在電腦裝 Apobri、用手機掃 QR 碼配對，大約 5 分鐘，一步一步照著做就好。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:locale:alternate" content="en_US">
+<!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
+<link rel="alternate" hreflang="zh-Hant" href="beta.html">
+<link rel="alternate" hreflang="en" href="en/beta.html">
+<link rel="alternate" hreflang="x-default" href="beta.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Apobri</a>
+    <nav class="main" aria-label="主要選單"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <a class="lang" href="en/beta.html" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+<section class="hero">
+  <p class="pill">搶先試用・大約 5 分鐘</p>
+  <h1>謝謝你來幫忙試用 Apobri！</h1>
+  <p class="lead">Apobri 讓你用 iPhone 或 iPad 遙控家裡的 Windows 電腦。下面一步一張卡片，照著做就好，不用懂電腦。每張卡片都寫了「卡住了怎麼辦」。</p>
+</section>
+
+<h2 id="need">開始前，準備這三樣</h2>
+<div class="cards">
+  <article class="card">
+    <h3>一台 Windows 電腦</h3>
+    <p>Windows 10 或 11 都可以，就是你想遙控的那一台。</p>
+  </article>
+  <article class="card">
+    <h3>一支 iPhone 或一台 iPad</h3>
+    <p>系統要 iOS／iPadOS 17 以上（到「設定 &gt; 一般 &gt; 關於本機」看得到）。</p>
+  </article>
+  <article class="card">
+    <h3>同一個 Wi&#8209;Fi</h3>
+    <p>第一次配對時，手機和電腦要連同一個 Wi&#8209;Fi。之後想在外面用，看<a href="quickstart.html#remote">在外面也能連</a>。</p>
+  </article>
+</div>
+
+<h2 id="steps">一步一步來</h2>
+<ol class="bsteps">
+  <li id="step-testflight">
+    <h3>在手機裝 TestFlight，加入測試</h3>
+    <p><span class="tag">要做什麼</span>TestFlight 是 Apple 官方用來試用新 App 的 App，免費。先在 iPhone／iPad 上安裝它，再點下面的邀請連結。</p>
+    <div class="btns"><a class="btn ghost" href="https://apps.apple.com/app/testflight/id899247664">在 App Store 取得 TestFlight</a> <span class="btn disabled" role="link" aria-disabled="true" data-todo="testflight">邀請連結即將開放</span></div>
+    <p><span class="tag">會看到什麼</span>點邀請連結後會打開 TestFlight，按「接受」，再按「安裝」。主畫面就會多一個 Apobri。</p>
+    <p><span class="tag warn">卡住了？</span>邀請連結請用 iPhone／iPad 上的 Safari 打開。如果顯示測試名額已滿，或連結打不開，告訴邀請你的人就好。</p>
+  </li>
+  <li id="step-pc">
+    <h3>在電腦下載並安裝 Apobri</h3>
+    <p><span class="tag">要做什麼</span>用<strong>電腦</strong>打開這一頁，按下面的按鈕下載，下載好後點兩下 <code>Apobri-Setup-…exe</code>。</p>
+    <div class="btns"><a class="btn" href="https://github.com/reegggllllaaaaa-cpu/reegggllllaaaaa-cpu.github.io/releases/download/host-installer-v1.0.0/Apobri-Setup-1.0.0.exe">下載 Windows 安裝程式</a></div>
+    <p><span class="tag">會看到什麼</span>可能會先跳出藍色的<strong>「Windows 已保護您的電腦」</strong>。這是因為 Apobri 是新軟體，還沒有程式碼簽章、也還在累積 Windows 的信譽，不是中毒。請這樣做：</p>
+    <ol class="sub">
+      <li>按文字下方的<strong>「其他資訊」</strong>。</li>
+      <li>確認應用程式名稱是 <code>Apobri-Setup-…exe</code>，再按<strong>「仍要執行」</strong>。</li>
+      <li>接著 Windows 會問<strong>「是否允許此 App 變更您的裝置？」</strong>，按<strong>「是」</strong>。只會問這一次。</li>
+    </ol>
+    <p>然後照安裝畫面按「下一步」到完成就好，預設選項不用改。</p>
+    <p><span class="tag warn">卡住了？</span>沒看到「仍要執行」，通常是還沒按「其他資訊」。如果被防毒軟體擋下來，不確定要不要放行，先寫信問我們。</p>
+  </li>
+  <li id="step-qr">
+    <h3>在電腦打開配對頁（QR 碼）</h3>
+    <p><span class="tag">要做什麼</span>安裝完成時，電腦通常會自己打開一個有 QR 碼的配對頁。沒有的話：到螢幕右下角的通知區域（時鐘旁邊）找 Apobri 圖示，按一下，選<strong>「顯示配對頁…」</strong>。</p>
+    <p><span class="tag">會看到什麼</span>一個有大大的 QR 碼和 8 位數配對碼的頁面。先讓它開著。</p>
+    <p><span class="tag warn">卡住了？</span>右下角找不到圖示？按時鐘旁邊的小箭頭 <strong>^</strong>，圖示可能藏在裡面。也可以從「開始」功能表搜尋「Apobri」打開配對頁。</p>
+  </li>
+  <li id="step-scan">
+    <h3>用手機打開 Apobri，掃描 QR 碼</h3>
+    <p><span class="tag">要做什麼</span>在手機打開 Apobri，首頁最上面是<strong>「開始使用」</strong>卡片。在卡片下方「已經裝好了？」那裡按<strong>「掃描 QR 碼」</strong>，對準電腦上的 QR 碼。</p>
+    <p><span class="tag">會看到什麼</span>手機會先問能不能使用<strong>相機</strong>（只用來掃 QR 碼），按允許。如果手機已經在同一個 Wi&#8209;Fi 找到電腦，卡片會直接顯示「找到『你的電腦』了」，點<strong>「點這裡配對」</strong>也可以。</p>
+    <p><span class="tag warn">卡住了？</span>掃不到就把手機拿遠一點、讓 QR 碼整個入鏡。也可以在手機手動輸入配對頁上的配對碼。</p>
+  </li>
+  <li id="step-allow">
+    <h3>按兩次「允許」</h3>
+    <p><span class="tag">要做什麼</span>第一次連線時，手機會問 Apobri 能不能尋找<strong>「區域網路」</strong>上的裝置，請按<strong>「允許」</strong>（不按就找不到電腦）。連上後會再問<strong>「信任這支 iPhone？」</strong>（或「信任這台 iPad？」），也按<strong>「允許」</strong>。</p>
+    <p><span class="tag">會看到什麼</span>手機上出現電腦的桌面，就成功了！之後同一支手機再連，不用再輸入配對碼。電腦也可能跳出 Apobri 通知請你按「允許」，按下去效果一樣。</p>
+    <p><span class="tag warn">卡住了？</span>不小心按了「不允許」？到手機「設定 &gt; Apobri」把「區域網路」打開，再回到 Apobri 重試。</p>
+  </li>
+</ol>
+
+<h2 id="feedback">遇到問題或有想法？告訴我們</h2>
+<div class="cards">
+  <article class="card">
+    <h3>在 TestFlight 截圖回報（最快）</h3>
+    <p>在 Apobri 裡看到怪怪的地方，直接截圖，點左下角的截圖縮圖，按「分享」，選<strong>「分享 Beta 版意見回饋」</strong>，寫一兩句話送出。也可以打開 TestFlight App，點 Apobri，按「傳送 Beta 版意見回饋」。</p>
+  </article>
+  <article class="card">
+    <h3>或寫信給我們</h3>
+    <p><a href="mailto:apobri.support@icloud.com">apobri.support@icloud.com</a></p>
+    <p>如果方便，請一起寫：手機或 iPad 的型號（例如 iPhone 15）、大概幾點發生的、當時在做什麼。不用寫電腦名稱或網路位址。</p>
+  </article>
+</div>
+
+<h2 id="faq">常見卡關</h2>
+<details id="faq-qr">
+  <summary>電腦上找不到 QR 碼</summary>
+  <p>點螢幕右下角時鐘旁的 Apobri 圖示（可能藏在小箭頭 ^ 裡）&gt;「顯示配對頁…」。或從「開始」功能表搜尋「Apobri」。如果都找不到，可能沒安裝完成，請重新執行一次安裝檔。</p>
+</details>
+<details id="faq-scan">
+  <summary>掃了 QR 碼，可是沒反應／一直連不上</summary>
+  <ul>
+    <li>手機和電腦連的是<strong>同一個 Wi&#8209;Fi</strong> 嗎？手機用行動網路時連不到。</li>
+    <li>手機「設定 &gt; Apobri」的「區域網路」有打開嗎？</li>
+    <li>咖啡廳、飯店、公司的 Wi&#8209;Fi 常常不讓裝置互相連線，請改用家裡的 Wi&#8209;Fi 試試。</li>
+    <li>還是不行，看<a href="quickstart.html#not-found">更詳細的排除方法</a>。</li>
+  </ul>
+</details>
+<details id="faq-black">
+  <summary>連上了，但畫面是黑的</summary>
+  <p>先等幾秒。電腦如果鎖定或睡著了，請先在電腦上解鎖一次再連。還是黑的，請截圖用 TestFlight 回報，這正是我們最想知道的問題。更多說明看<a href="quickstart.html#black">這裡</a>。</p>
+</details>
+<details id="faq-away">
+  <summary>出門在外就連不上</summary>
+  <p>這是正常的：Apobri 不經過雲端，所以出門在外要另外設定一次免費的 Tailscale（大約 5 分鐘）。步驟在<a href="quickstart.html#remote">在外面也能連</a>。</p>
+</details>
+<details id="faq-uninstall">
+  <summary>試完了，怎麼移除？</summary>
+  <ul>
+    <li><strong>電腦：</strong>Windows「設定 &gt; 應用程式 &gt; 已安裝的應用程式」找到 Apobri，按「解除安裝」。</li>
+    <li><strong>手機：</strong>在主畫面長按 Apobri，選「移除 App」。TestFlight 不需要的話也可以一起刪掉。</li>
+  </ul>
+</details>
+<p class="meta">再次謝謝你！更完整的說明在<a href="quickstart.html">快速上手</a>與<a href="support.html">支援</a>。</p>
+
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
+    <p>&copy; 2026 RuiTang Young</p>
+  </div>
+</footer>
+</body>
+</html>
