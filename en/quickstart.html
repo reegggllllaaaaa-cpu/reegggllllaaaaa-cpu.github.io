@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Get started: connect in a few minutes | Apobri</title>
-<meta name="description" content="Install the Apobri Host, pair your iPad (QR code, nearby computers or pairing code), press Allow on the PC, and connect. Includes troubleshooting.">
+<meta name="description" content="Install the Apobri Host, pair your iPad (QR code, nearby computers or pairing code), tap Allow to make it a trusted device, and connect. Includes troubleshooting.">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apobri">
 <meta property="og:title" content="Get started: connect in a few minutes | Apobri">
-<meta property="og:description" content="Install the Apobri Host, pair your iPad (QR code, nearby computers or pairing code), press Allow on the PC, and connect. Includes troubleshooting.">
+<meta property="og:description" content="Install the Apobri Host, pair your iPad (QR code, nearby computers or pairing code), tap Allow to make it a trusted device, and connect. Includes troubleshooting.">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_TW">
 <!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
@@ -52,12 +52,12 @@
     </ul>
   </li>
   <li>
-    <h3>Press Allow on the PC</h3>
-    <p>The pairing page (or the console window) asks whether to allow this device. <strong>Allow only devices you recognise.</strong> If you do not respond within 120 seconds the request is cancelled; just try again from the iPad.</p>
+    <h3>Tap Allow to trust the device</h3>
+    <p>Once connected, the app asks &ldquo;Trust this iPad?&rdquo; Tap <em>Allow</em>; you can also press <em>Allow</em> on the PC&rsquo;s pairing page. When a phone or iPad approves itself, the PC shows a notification. <strong>If it was not you, open the Apobri icon in the taskbar &gt; &ldquo;Paired devices&rdquo; and remove it.</strong></p>
   </li>
   <li>
     <h3>First connection</h3>
-    <p>After you press Allow, the iPad shows the Windows desktop. The same iPad reconnects later without a code. To remove a device, revoke it in the device list on the pairing page.</p>
+    <p>After you enter the pairing code or scan the QR code, the iPad shows the Windows desktop; you do not need to press anything on the PC. If you tapped Allow to trust it, the same iPad reconnects later without a code. To remove a device, revoke it in the device list on the pairing page.</p>
   </li>
 </ol>
 
@@ -105,7 +105,7 @@
 <details id="other">
   <summary>Other: pairing keeps waiting / remove a device</summary>
   <ul>
-    <li>Pairing keeps waiting: nobody pressed <em>Allow</em> within 120 seconds. Press Allow on the pairing page, or start pairing again on the iPad.</li>
+    <li>Pairing keeps waiting: check that the pairing code is right, or scan the QR code on the PC instead. If the PC is locked, unlock it first. Otherwise start pairing again on the iPad.</li>
     <li>A lost or retired iPad: pairing page &gt; device list &gt; revoke; or run <code>AppleBridge.Host.exe --revoke all</code> to revoke every device (the Host&rsquo;s program file still uses the old name AppleBridge).</li>
   </ul>
 </details>

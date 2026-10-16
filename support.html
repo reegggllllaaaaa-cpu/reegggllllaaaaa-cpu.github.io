@@ -40,7 +40,14 @@
 <h2 id="faq">常見問題</h2>
 <details><summary>需要註冊帳號嗎？</summary><p>不需要。Apobri 沒有帳號系統。</p></details>
 <details><summary>可以在外面用嗎？</summary><p>可以，但要用 Tailscale：電腦與 iPad 都安裝 Tailscale 並登入同一個帳號。Apobri 本身沒有雲端中繼，也不使用 STUN／TURN，所以只支援區域網路或 Tailscale 這類你自己建立的私人網路。Tailscale 不隨附於 Apobri，需自行安裝，並適用 Tailscale 自己的條款與隱私政策。</p></details>
-<details><summary>為什麼第一次連線要在電腦按「允許」？</summary><p>這是為了確保只有你同意的裝置能看到並控制這台電腦。按下允許後，這台裝置的金鑰會加密存在電腦上，之後不需要再輸入配對碼。</p></details>
+<details id="relay"><summary>App 顯示「目前經由中繼連線，延遲較高」是什麼意思？</summary><p>Tailscale 沒辦法在電腦和 iPad／iPhone 之間打通直接的路，只好經由 Tailscale 的中繼伺服器（DERP）轉送。中繼的頻寬較小、來回時間較長（常見 60–150 ms）。Apobri 偵測到中繼時會自動把每一張畫面控制在中繼送得動的大小、捲動停下後再逐步補回細節，解析度與幀率不變，所以仍然可以順暢操作；但延遲一定比直連高。</p>
+<p>想要直連，可以試試（都不是必要的）：</p>
+<ul>
+  <li>家裡的路由器開啟 <strong>UPnP</strong> 或 <strong>NAT-PMP／PCP</strong>（路由器設定頁裡常在「進階」「NAT」或「連接埠轉送」）。開啟後 Tailscale 通常能自動建立直連。</li>
+  <li>iPhone／iPad 換一個網路試試：有些公司、學校、飯店或行動網路會擋 UDP，只能走中繼。</li>
+  <li>在電腦上執行 <code>tailscale netcheck</code>，看「UDP」是否為 true、「PortMapping」是否有值；<code>tailscale status</code> 裡對方裝置那一行若顯示 <code>relay "xxx"</code> 代表目前走中繼，顯示 <code>direct</code> 代表直連。</li>
+</ul></details>
+<details><summary>為什麼要按「允許」成為信任裝置？</summary><p>新裝置只要有電腦上的配對碼或 QR Code 就能連線，沒有配對碼的人連不進來。按「允許」是額外一步：這台裝置會成為信任裝置，金鑰加密存在電腦上，之後不必再輸入配對碼，分享選單與剪貼簿捷徑也能在背景使用。為了安全，只有正在操作這台電腦的那條連線能核准，60 秒內有效，整台電腦每小時最多 3 次，電腦鎖定或有人在電腦前時不能核准。</p></details>
 <details><summary>有聲音嗎？</summary><p>有，但還很新、尚未在真的 iPad 上驗證：Host 會把 Windows 的系統聲音以 Opus 傳到 iPad，只在 WebRTC 傳輸時有效（WebSocket／HEVC 傳輸沒有聲音）。只有在 iPad 已連線且「聲音」開關開著時才會擷取，電腦本機照常出聲。延遲與音畫同步還沒有實測。</p></details>
 <details><summary>支援哪些裝置？</summary><p>用戶端是 iPad 與 iPhone（iPadOS／iOS 17.0 以上）；被操作端是 Windows 10／11 電腦。目前沒有 Mac、Android 或 Linux 版。</p></details>
 <details><summary>如何撤銷一台裝置？</summary><p>在電腦上開配對頁，於裝置清單撤銷；或用命令列 <code>AppleBridge.Host.exe --devices</code> 列出、<code>AppleBridge.Host.exe --revoke &lt;編號開頭&gt;</code> 撤銷單一裝置，<code>--revoke all</code> 撤銷全部。已連線的工作階段會立刻中斷。</p></details>

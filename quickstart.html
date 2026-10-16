@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>快速上手：三分鐘連上你的電腦 | Apobri</title>
-<meta name="description" content="安裝 Apobri Host、在 iPad 配對（QR Code、附近的電腦或配對碼）、在電腦按「允許」，然後開始連線；並附常見問題排除。">
+<meta name="description" content="安裝 Apobri Host、在 iPad 配對（QR Code、附近的電腦或配對碼）、按「允許」成為信任裝置，然後開始連線；並附常見問題排除。">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apobri">
 <meta property="og:title" content="快速上手：三分鐘連上你的電腦 | Apobri">
-<meta property="og:description" content="安裝 Apobri Host、在 iPad 配對（QR Code、附近的電腦或配對碼）、在電腦按「允許」，然後開始連線；並附常見問題排除。">
+<meta property="og:description" content="安裝 Apobri Host、在 iPad 配對（QR Code、附近的電腦或配對碼）、按「允許」成為信任裝置，然後開始連線；並附常見問題排除。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:locale:alternate" content="en_US">
 <!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
@@ -52,12 +52,12 @@
     </ul>
   </li>
   <li>
-    <h3>在電腦按「允許」</h3>
-    <p>配對頁（或命令列視窗）會問你是否允許這個裝置。<strong>請只允許你認得的裝置。</strong>120 秒內沒有按，配對會取消，從 iPad 再試一次即可。</p>
+    <h3>按「允許」成為信任裝置</h3>
+    <p>連上後，App 會問「信任這台 iPad？」，按「允許」即可；也可以在電腦的配對頁按「允許」。手機自己核准時，電腦會跳出通知，<strong>如果不是你，請到工作列的 Apobri 圖示 >「已配對的裝置」移除。</strong></p>
   </li>
   <li>
     <h3>第一次連線</h3>
-    <p>按下允許後，iPad 就會顯示 Windows 桌面。往後同一台 iPad 重新連線不需要再輸入配對碼。要撤銷某台裝置，到配對頁的裝置清單移除。</p>
+    <p>輸入配對碼或掃描 QR Code 後，iPad 就會顯示 Windows 桌面，不必在電腦上按任何東西。如果你按了「允許」成為信任裝置，往後同一台 iPad 重新連線就不需要再輸入配對碼。要撤銷某台裝置，到配對頁的裝置清單移除。</p>
   </li>
 </ol>
 
@@ -105,7 +105,7 @@
 <details id="other">
   <summary>其他：一直停在等待配對／想撤銷裝置</summary>
   <ul>
-    <li>配對一直等待：沒有人在 120 秒內按「允許」。在配對頁按允許，或從 iPad 再發起一次。</li>
+    <li>配對一直等待：確認配對碼打對了，或直接掃電腦上的 QR Code。電腦要是鎖定中，也請先解鎖。還是不行就從 iPad 再發起一次。</li>
     <li>遺失或不再使用某台 iPad：配對頁 &gt; 裝置清單 &gt; 撤銷；或在命令列執行 <code>AppleBridge.Host.exe --revoke all</code> 撤銷全部裝置（Host 的程式檔名仍沿用舊稱 AppleBridge）。</li>
   </ul>
 </details>
