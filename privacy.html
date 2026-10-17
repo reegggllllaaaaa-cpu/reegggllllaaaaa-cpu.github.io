@@ -31,7 +31,7 @@
 <main id="main">
   <div class="wrap">
 <h1>隱私權政策</h1>
-<p class="meta">最後修訂：2026-10-16。適用範圍：Apobri iPad／iPhone App 與 Apobri Windows Host。</p>
+<p class="meta">最後修訂：2026-10-17。適用範圍：Apobri iPad／iPhone App 與 Apobri Windows Host。</p>
 
 <h2 id="short">簡短版</h2>
 <ul>
@@ -47,6 +47,7 @@
 <h2 id="flow">資料如何傳送</h2>
 <p>你的 iPad 與 Windows 電腦直接連線。畫面、輸入與資料通道使用 WebRTC，並經 DTLS 加密。Host 建立連線時不使用任何 STUN／TURN 伺服器，所以也沒有第三方得知你的位址。</p>
 <p>需要誠實說明的一點：建立連線用的「信令」在區域網路上目前走未加密的 HTTP 連接埠（預設 8765），其中包含以配對碼登入時的挑戰回應（配對碼本身不會明文送出）。在不信任的網路上，建議使用 Tailscale。Host 的 HTTPS 連接埠（8766）使用自簽憑證，App 在 QR 配對時會釘選它的指紋。</p>
+<p><strong>Toss（隨手丟）與近距離直連</strong>：你放進 Toss 的東西，會在你自己配對過的裝置（電腦、iPhone、iPad）之間同步。裝置與電腦之間走上面同一條已驗證的連線；兩台蘋果裝置在附近時，會在同一個區域網路或點對點 Wi‑Fi（AWDL）上直接連線，並以 TLS 加密（金鑰由只有你的裝置持有的空間金鑰導出）。全程不經過任何 Apobri 伺服器。Toss 只保存你明確放進去的東西；一般的複製貼上不會被記錄。注意：移除一台裝置後，它之後不會再收到新內容，但<strong>已經同步到那台裝置上的內容無法收回</strong>。</p>
 <p>Host 只在私人位址上監聽：本機、區域網路（10.x、172.16–31.x、192.168.x）與 Tailscale（100.64.x–100.127.x）。配對頁與裝置管理功能只接受來自這台電腦本機的請求。</p>
 
 <h2 id="update">自動更新檢查（Windows）</h2>
@@ -60,6 +61,7 @@
   <li><strong>鑰匙圈（Keychain）</strong>：這台裝置的配對金鑰與配對憑證。</li>
   <li><strong>App 本機設定</strong>：已儲存電腦的名稱與位址、連線與輸入偏好。</li>
   <li>收到的檔案存在 App 內與「檔案」App；只有在你開啟「將收到的照片與影片存到『照片』」選項時，才會存進「照片」。</li>
+  <li><strong>Toss</strong>：放進 Toss 的項目清單、縮圖與你打開過的內容，快取在 App 的共用容器（App Group）內；Toss 的空間金鑰存在鑰匙圈，僅限這台裝置，不會同步到 iCloud 或寫進備份。</li>
 </ul>
 <p>這些資料不會離開你的裝置，除非是你在連線中傳給你的電腦。「螢幕廣播」擴充只把你主動開始廣播的畫面與聲音直接送到你輸入的那台電腦，不存檔、不經過任何伺服器。</p>
 
@@ -72,16 +74,19 @@
   <tr><td><code>host.pfx</code>（及密碼檔）</td><td>Host 自簽的 HTTPS 憑證與私鑰，第一次啟動時產生</td><td>每次安裝隨機密碼，以 DPAPI 保護；檔案權限限制為目前使用者</td></tr>
   <tr><td><code>host.log</code>、<code>host.err.log</code></td><td>操作記錄：連線時間、裝置名稱與編號、<strong>裝置的 IP 位址</strong>、編碼與網路統計</td><td>純文字，超過 5 MB 輪替。配對碼與 Inbox Token 不會寫入記錄檔</td></tr>
   <tr><td><code>Downloads\Apobri</code>（舊版為 <code>Downloads\AppleBridge</code>，啟動時自動改名）</td><td>你從 iPad 傳來或傳到 iPad 的檔案</td><td>一般的下載資料夾權限</td></tr>
+  <tr><td><code>toss\</code></td><td>Toss 的同步日誌與狀態：你放進 Toss 的項目（包括你放入的<strong>文字與網址</strong>）、項目名稱與縮圖、成員裝置的名稱，以及 Toss 的空間金鑰</td><td>空間金鑰以 Windows DPAPI（目前使用者範圍）加密；其餘為純文字，存取權限限制為目前的 Windows 使用者</td></tr>
+  <tr><td><code>Downloads\Apobri\.apobri-shelf\</code></td><td>放進 Toss 的檔案與它們的各個版本</td><td>一般的下載資料夾權限</td></tr>
 </table></div>
 <p>螢幕畫面不會被寫入磁碟：影格直接由 GPU 送到編碼器再送上網路。Host 也會依你的要求設定 Windows 剪貼簿內容。Apobri 不會把這些資料送到任何地方。</p>
 <p>系統聲音（電腦正在播放的內容，可能含私密內容）只在已驗證的 WebRTC 連線期間、且 iPad 的「聲音」開關開著時才擷取，經同一條加密連線傳給該 iPad；不錄音、不寫檔，其他情況完全不開啟音訊裝置。可在 iPad 設定關閉，或在 Host 設定檔設 <code>"Audio": false</code>。</p>
 <p>Host 為了「附近的電腦」功能，會在區域網路上以 mDNS（<code>_apobri._tcp</code>）公告：電腦名稱、私人區網 IPv4 位址、連接埠、憑證指紋（公開資訊）、是否允許配對，以及一個隨機產生的主機識別碼。公告不離開區域網路，也不包含配對碼、金鑰、使用者名稱、檔名或視窗標題。同一個網路上的人可能知道「這台電腦有安裝 Apobri」，但仍然無法連線：新裝置必須有電腦上顯示的配對碼或 QR Code。你可以在 <code>config.json</code> 設 <code>"Discovery": false</code> 關閉。</p>
+<p>Toss 的近距離直連另外由 iPhone／iPad 以 Bonjour 服務 <code>_apobri-toss._tcp</code> 在區域網路與點對點 Wi‑Fi（AWDL）上公告。公告的名稱是每天輪換、由空間金鑰算出的雜湊，<strong>不含裝置名稱、使用者名稱或任何固定識別碼</strong>；沒有你的空間金鑰的人看不出是誰，也無法連線。</p>
 <p>Host 會執行的本機輔助程式：<code>ffmpeg.exe</code>（影像編碼）、<code>powershell</code>（顯示通知）、以及（只有已安裝 Tailscale 時）<code>tailscale status --json</code>（唯讀）。它們都不會被指示去連網際網路。</p>
 
 <h2 id="permissions">權限與用途</h2>
 <div class="tablewrap"><table>
   <tr><th>權限</th><th>用途</th></tr>
-  <tr><td>區域網路</td><td>在你的網路上找到並連線到你的 Windows 電腦（含「附近的電腦」，使用 Bonjour 服務 <code>_apobri._tcp</code>），並顯示與控制它。只在你第一次開始連線（或按「尋找這個網路上的電腦」）時才會詢問；示範模式不需要。沒有此權限就無法連線。</td></tr>
+  <tr><td>區域網路</td><td>在你的網路上找到並連線到你的 Windows 電腦（含「附近的電腦」，使用 Bonjour 服務 <code>_apobri._tcp</code>），並顯示與控制它；以及 Toss 在你自己的裝置之間近距離直連（Bonjour 服務 <code>_apobri-toss._tcp</code>）。只在你第一次開始連線（或按「尋找這個網路上的電腦」）時才會詢問；示範模式不需要。沒有此權限就無法連線。</td></tr>
   <tr><td>相機</td><td>只用來掃描 Host 配對頁上的 QR Code。不拍照、不錄影。</td></tr>
   <tr><td>麥克風</td><td>只有在你從系統廣播選單開始「螢幕廣播」並打開麥克風按鈕時，才把麥克風聲音送到你的電腦。其他情況不錄音。</td></tr>
   <tr><td>照片（僅新增）</td><td>只有在你開啟「將收到的照片與影片存到『照片』」時，才會把從電腦傳來的照片與影片存進「照片」。Apobri 不會讀取你的相簿。</td></tr>
@@ -89,7 +94,7 @@
 
 <h2 id="revoke">撤銷與刪除</h2>
 <ul>
-  <li>撤銷一台裝置：電腦上的配對頁 &gt; 裝置清單，或 <code>AppleBridge.Host.exe --revoke &lt;編號開頭&gt;</code>。撤銷全部：<code>AppleBridge.Host.exe --revoke all</code>。已連線的工作階段立刻中斷。</li>
+  <li>撤銷一台裝置：電腦上的配對頁 &gt; 裝置清單，或 <code>AppleBridge.Host.exe --revoke &lt;編號開頭&gt;</code>。撤銷全部：<code>AppleBridge.Host.exe --revoke all</code>。已連線的工作階段立刻中斷。被撤銷的裝置不會再收到新的 Toss 內容（電腦會換一把新的空間金鑰給其餘裝置），但已經同步到它上面的內容無法收回。</li>
   <li>刪除所有 Host 資料：解除安裝時選擇一併刪除設定、裝置與記錄，或自行刪除 <code>%APPDATA%\AppleBridge</code>。</li>
   <li>刪除 App 資料：在 iPad 刪除 Apobri App，其鑰匙圈與本機資料也會隨之移除。</li>
 </ul>
