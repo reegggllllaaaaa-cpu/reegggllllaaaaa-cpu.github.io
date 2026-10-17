@@ -72,10 +72,10 @@
 <p>全部在你的 Windows 使用者設定檔下的 <code>%APPDATA%\AppleBridge</code>（資料夾名稱沿用舊稱），預設只有你的 Windows 帳號能讀取。</p>
 <div class="tablewrap"><table>
   <tr><th>檔案</th><th>內容</th><th>保護</th></tr>
-  <tr><td><code>config.json</code></td><td>設定、8 位數配對碼、供 iPhone 捷徑使用的 Inbox Token</td><td>純文字，但存取權限限制為目前的 Windows 使用者</td></tr>
+  <tr><td><code>config.json</code></td><td>設定、8 位數配對碼、供 iPhone 捷徑使用的 Inbox Token</td><td>設定是純文字；配對碼與 Inbox Token 以 Windows DPAPI 加密（只有您這個 Windows 帳號能解）。檔案存取權限也限制為目前的 Windows 使用者</td></tr>
   <tr><td><code>devices.json</code></td><td>每台已配對裝置：編號、名稱、平台、建立與最後連線時間、驗證用資料</td><td>驗證用資料以 Windows DPAPI（目前使用者範圍）加密；複製到別台電腦或別的使用者無法解開</td></tr>
   <tr><td><code>host.pfx</code>（及密碼檔）</td><td>Host 自簽的 HTTPS 憑證與私鑰，第一次啟動時產生</td><td>每次安裝隨機密碼，以 DPAPI 保護；檔案權限限制為目前使用者</td></tr>
-  <tr><td><code>host.log</code>、<code>host.err.log</code>（以及新版管理程式啟用後才會出現的 <code>host.stdout.log</code>）</td><td>操作記錄：連線時間、裝置名稱與編號、<strong>裝置的 IP 位址</strong>、編碼與網路統計</td><td>純文字。<code>host.log</code> 目前不會自動輪替，檔案會持續變大，新版管理程式啟用後才會限制大小並保留舊檔。<strong>配對碼與 Inbox Token 不會寫入記錄檔</strong>；舊版曾寫入的，新版啟動時會自動把它們蓋成 *</td></tr>
+  <tr><td><code>host.log</code>（與 <code>host.log.1</code>～<code>host.log.4</code>）、<code>host.stdout.log</code>、<code>host.err.log</code></td><td>操作記錄：連線時間、裝置名稱與編號、<strong>裝置的 IP 位址</strong>、編碼與網路統計</td><td>純文字。<code>host.log</code> 每個檔案最多 10 MB，最多保留 5 個（含目前的），更舊的自動刪除；<code>host.stdout.log</code> 只留程式的原始輸出（超過 5 MB 換成 <code>.old</code>）。<strong>配對碼與 Inbox Token 不會寫入記錄檔</strong>；舊版曾寫入的，新版啟動時會自動把它們蓋成 *</td></tr>
   <tr><td><code>tokens.json</code></td><td>已配對裝置的存取憑證（token）與到期時間，讓電腦重新啟動或更新後，裝置不必重新取得憑證。只保存已配對裝置的；用配對碼登入取得的不會存檔</td><td>內容以 Windows DPAPI（目前使用者範圍）加密；移除裝置時，它的憑證立即失效並從檔案刪除</td></tr>
   <tr><td><code>tray.log</code></td><td>系統匣圖示的運作記錄</td><td>純文字，放在同一個資料夾</td></tr>
   <tr><td><code>audio-local-mute.json</code></td><td>只記錄「電腦喇叭目前是不是被 Apobri 暫時靜音」，讓當機或重新啟動後能把聲音還原。不含任何聲音內容</td><td>純文字，沒有個人資料</td></tr>
