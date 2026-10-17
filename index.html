@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apobri：用 iPad 操作你的 Windows 電腦</title>
-<meta name="description" content="Apobri 讓 iPad 與 iPhone 直接連到你的 Windows 電腦，看畫面、用觸控、滑鼠與鍵盤操作。不經雲端、不需帳號、不蒐集資料。">
+<meta name="description" content="Apobri 讓 iPad 與 iPhone 直接連到你的 Windows 電腦，看畫面、用觸控、滑鼠與鍵盤操作。能直連就直連、不需帳號、不蒐集資料。">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apobri">
 <meta property="og:title" content="Apobri：用 iPad 操作你的 Windows 電腦">
-<meta property="og:description" content="Apobri 讓 iPad 與 iPhone 直接連到你的 Windows 電腦，看畫面、用觸控、滑鼠與鍵盤操作。不經雲端、不需帳號、不蒐集資料。">
+<meta property="og:description" content="Apobri 讓 iPad 與 iPhone 直接連到你的 Windows 電腦，看畫面、用觸控、滑鼠與鍵盤操作。能直連就直連、不需帳號、不蒐集資料。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:locale:alternate" content="en_US">
 <!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
@@ -31,8 +31,8 @@
 <main id="main">
   <div class="wrap">
 <section class="hero">
-  <h1>用 iPad 操作你的 Windows 電腦，<br>直接連線，不經雲端。</h1>
-  <p class="lead">Apobri 由 iPad／iPhone App 與安裝在 Windows 的 Host 組成。在家用網路或 Tailscale 上，兩個裝置之間直接傳送畫面與輸入，沒有帳號、沒有中繼伺服器。</p>
+  <h1>用 iPad 操作你的 Windows 電腦，<br>直接連線，不需帳號。</h1>
+  <p class="lead">Apobri 由 iPad／iPhone App 與安裝在 Windows 的 Host 組成。在家用網路或 Tailscale 上，兩個裝置之間直接傳送畫面與輸入，不需要帳號。無法直接連線時（例如人在外面），可能經 Cloudflare 的轉接服務與 STUN（必要時 TURN 中繼）建立連線；它們看不到你的畫面與內容。</p>
   <div class="btns">
     <a class="btn" href="#download">下載與安裝</a>
     <a class="btn ghost" href="quickstart.html">快速上手</a>
@@ -52,8 +52,8 @@
     <p class="meta">預設是遠端操作電腦現有的螢幕；iPad 也可以在設定的「第二螢幕」選「延伸」，當 Windows 多出來的螢幕。見<a href="support.html#limits">已知限制</a>。</p>
   </article>
   <article class="card">
-    <h3>隱私：不經雲端的直連</h3>
-    <p>畫面與輸入只傳給你配對過的裝置。Host 沒有遙測、使用分析或廣告，也不主動連上網際網路（自動更新服務只向 GitHub 查詢新版，見<a href="privacy.html#update">隱私權政策</a>）。新裝置要用電腦上顯示的配對碼或 QR Code 才能連線；要成為「信任裝置」（之後不必再輸入配對碼、分享與剪貼簿捷徑可在背景使用），需按一次「允許」：可以在電腦上按，也可以由正在操作這台電腦的手機或 iPad 自己按，電腦會跳出通知讓你知道。</p>
+    <h3>隱私：能直連就直連，內容端對端加密</h3>
+    <p>畫面與輸入只傳給你配對過的裝置。Host 沒有遙測、使用分析或廣告。會連上網際網路的只有自動更新服務（只向 GitHub 查詢新版）與無法直連時用的 Cloudflare 轉接服務（看不到畫面與內容），見<a href="privacy.html#flow">隱私權政策</a>。新裝置要用電腦上顯示的配對碼或 QR Code 才能連線；要成為「信任裝置」（之後不必再輸入配對碼、分享與剪貼簿捷徑可在背景使用），需按一次「允許」：可以在電腦上按，也可以由正在操作這台電腦的手機或 iPad 自己按，電腦會跳出通知讓你知道。</p>
     <p class="meta"><a href="privacy.html">閱讀隱私權政策</a></p>
   </article>
 </div>
@@ -62,7 +62,7 @@
 <figure>
   <svg viewBox="0 0 720 300" role="img" aria-labelledby="dg-t dg-d" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-t">Apobri 連線架構示意圖</title>
-  <desc id="dg-d">iPad 與 Windows 電腦透過同一個區域網路或 Tailscale 直接連線，中間沒有雲端伺服器。</desc>
+  <desc id="dg-d">iPad 與 Windows 電腦透過同一個區域網路或 Tailscale 直接連線；無法直連時，可能經 Cloudflare 的加密轉接服務建立連線，它看不到畫面與內容。</desc>
   <style>
     .box { fill: var(--bg); stroke: var(--text); stroke-width: 2; }
     .t { fill: var(--text); font: 600 17px system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
@@ -84,7 +84,7 @@
   <text class="s" x="360" y="156" text-anchor="middle">畫面、輸入、剪貼簿、檔案</text>
   <path class="dash" d="M125 200 V236 H595 V200"/>
   <text class="s" x="360" y="258" text-anchor="middle">同一個區域網路，或 Tailscale 私人網路</text>
-  <text class="s" x="360" y="30" text-anchor="middle">沒有雲端、帳號或中繼伺服器</text>
+  <text class="s" x="360" y="30" text-anchor="middle">不需要帳號；轉接服務看不到畫面與內容</text>
   <path class="dash" d="M300 42 H420"/>
 </svg>
   <figcaption>畫面與輸入只在你配對過的兩個裝置之間傳送。</figcaption>
@@ -112,14 +112,14 @@
 <div class="tablewrap"><table>
   <tr><th scope="row">Windows 電腦</th><td>Windows 10 或 Windows 11。建議有硬體 H.264／HEVC 編碼的 GPU：Intel（QSV）、NVIDIA（NVENC）或 AMD（AMF）任一種（近年的筆電與桌機幾乎都有）。沒有硬體編碼器的電腦（例如部分虛擬機）會退回軟體編碼，畫面仍可傳送，但比較慢、也比較耗電。Host 的影像編碼使用 ffmpeg，詳見<a href="licenses.html">授權與第三方聲明</a>。</td></tr>
   <tr><th scope="row">iPad／iPhone</th><td>iPadOS 17.0 或 iOS 17.0 以上。第一次連線時需允許「區域網路」權限。</td></tr>
-  <tr><th scope="row">網路</th><td>iPad 與電腦在同一個區域網路，或兩邊都安裝並登入 Tailscale。不支援經由網際網路的其他連線方式（沒有 STUN／TURN）。</td></tr>
+  <tr><th scope="row">網路</th><td>建議 iPad 與電腦在同一個區域網路，或兩邊都安裝並登入 Tailscale。不在同一個網路又沒有 Tailscale 時，可能經 Cloudflare 的轉接服務與 STUN（必要時 TURN 中繼）建立連線，但不保證每個網路都連得上（有些公司、學校或行動網路限制較嚴）。</td></tr>
 </table></div>
 
   </div>
 </main>
 <footer class="site">
   <div class="wrap">
-    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不需帳號。</p>
     <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
     <p>&copy; 2026 RuiTang Young</p>
   </div>

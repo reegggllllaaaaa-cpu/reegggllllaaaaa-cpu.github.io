@@ -39,7 +39,7 @@
 
 <h2 id="faq">FAQ</h2>
 <details><summary>Do I need an account?</summary><p>No. Apobri has no account system.</p></details>
-<details id="remote"><summary>Can I use it away from home?</summary><p>Yes, with Tailscale: install it on the PC and on the iPhone or iPad and sign in to the same account. The steps are in <a href="quickstart.html#remote">Get started: use it away from home</a>. Apobri itself has no cloud relay and uses no STUN/TURN, so only a local network or a private network you set up yourself (such as Tailscale) is supported. Tailscale is not part of Apobri; you install it yourself and its own terms and privacy policy apply.</p></details>
+<details id="remote"><summary>Can I use it away from home?</summary><p>Yes. When the PC and your iPhone or iPad cannot connect directly, Apobri may set up the connection through a relay service on Cloudflare and STUN (and, if needed, a TURN relay), which cannot see your screen or content; some networks are too restrictive, so this is not guaranteed. The most reliable way is Tailscale: install it on the PC and on the iPhone or iPad and sign in to the same account. The steps are in <a href="quickstart.html#remote">Get started: use it away from home</a>. Tailscale is not part of Apobri; you install it yourself and its own terms and privacy policy apply.</p></details>
 <details id="relay"><summary>The app says &ldquo;Connected through a relay: higher latency&rdquo;. What does it mean?</summary><p>Tailscale could not open a direct path between the PC and your iPad or iPhone, so the traffic goes through one of Tailscale&rsquo;s relay servers (DERP). A relay has less bandwidth and a longer round trip (often 60&ndash;150 ms). When Apobri detects a relay it keeps every picture small enough for the relay and adds the fine detail back once scrolling stops; resolution and frame rate stay the same, so it remains smooth to use, but latency is always higher than on a direct path.</p>
 <p>To get a direct path you can try (none of this is required):</p>
 <ul>
@@ -90,7 +90,7 @@
   <li><strong>Clipboard sync covers text, images and files</strong>, with size limits (for example about 16 MB for an image); whole folders are not supported.</li>
   <li><strong>Older apps and the web client still set up the connection over plain HTTP.</strong> The current iPad/iPhone app does its signaling (the handshake that sets up the connection) over TLS (wss, port 8766) and pins the PC&rsquo;s certificate fingerprint. Older app versions and the web client (PWA) still use the unencrypted HTTP port (default 8765) on your LAN, so other people on the same network could in principle observe that handshake (including the challenge-response when logging in with a pairing code). <strong>On networks you do not trust (public Wi-Fi, offices), use the current app or connect through Tailscale.</strong></li>
   <li><strong>The pairing code is stored as plain text in <code>config.json</code></strong> (readable only by the current Windows user). Other programs running as the same Windows user can read it.</li>
-  <li><strong>No direct connection over the Internet:</strong> there is no STUN/TURN; use Tailscale for remote use.</li>
+  <li><strong>Connecting over the Internet is not guaranteed:</strong> when a direct connection is not possible, Apobri may use a relay service on Cloudflare and STUN (and, if needed, a TURN relay), but very restrictive networks may still block it; Tailscale is the most reliable way for remote use.</li>
   <li><strong>Wake-on-LAN</strong> works only on the same local network and is not yet fully verified on real hardware; see <a href="quickstart.html#wake">Get started</a>.</li>
 </ul>
 
@@ -98,7 +98,7 @@
 </main>
 <footer class="site">
   <div class="wrap">
-    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no account.</p>
     <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
     <p>&copy; 2026 RuiTang Young</p>
   </div>

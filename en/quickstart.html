@@ -59,7 +59,7 @@
 </ol>
 
 <h2 id="remote">Use it away from home (Tailscale)</h2>
-<p>Apobri has no cloud server of its own: the screen goes straight between your devices. To reach your PC from another network, put the PC and your iPhone or iPad on the same private network that belongs to you, with the free <a href="https://tailscale.com/">Tailscale</a>. You set it up once, in about five minutes; after that Apobri finds the way by itself.</p>
+<p>Apobri connects directly whenever it can: the screen goes straight between your devices. Away from home, Apobri may reach your PC through a relay service on Cloudflare and STUN (and, if needed, a TURN relay), which cannot see your screen or content; this is not guaranteed on every network. The most reliable way is to put the PC and your iPhone or iPad on the same private network that belongs to you, with the free <a href="https://tailscale.com/">Tailscale</a>. You set it up once, in about five minutes; after that Apobri finds the way by itself.</p>
 <ol class="steps">
   <li>
     <h3>Install Tailscale on the PC and sign in</h3>
@@ -89,7 +89,7 @@
     <li><strong>Local Network permission?</strong> In iPad Settings, open Apobri and make sure Local Network is on.</li>
     <li><strong>Is the PC awake and the Host running?</strong> Open the pairing page from the Start menu again (it waits up to 20 seconds). If it does not open, the Host is not running.</li>
     <li><strong>Firewall.</strong> If you did not tick the firewall option during setup, Windows Firewall may block the connection. Run the installer again and tick it.</li>
-    <li><strong>Away from home.</strong> There is no cloud relay, so use Tailscale: follow the four steps in <a href="#remote">Use it away from home</a> once.</li>
+    <li><strong>Away from home.</strong> Apobri may connect back to your PC through a relay service on Cloudflare; if it does not, or for the most reliable connection, use Tailscale: follow the four steps in <a href="#remote">Use it away from home</a> once.</li>
     <li><strong>&ldquo;Nearby computers&rdquo; is empty.</strong> You may be on a different subnet, or discovery was turned off in the PC&rsquo;s <code>config.json</code> (<code>"Discovery": false</code>). Use the QR code or type the address.</li>
   </ul>
 </details>
@@ -133,7 +133,7 @@
 </main>
 <footer class="site">
   <div class="wrap">
-    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no account.</p>
     <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
     <p>&copy; 2026 RuiTang Young</p>
   </div>

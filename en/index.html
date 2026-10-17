@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apobri: use your Windows PC from your iPad</title>
-<meta name="description" content="Apobri connects your iPad or iPhone directly to your Windows PC: see the screen and use touch, mouse and keyboard. No cloud, no account, no data collection.">
+<meta name="description" content="Apobri connects your iPad or iPhone directly to your Windows PC: see the screen and use touch, mouse and keyboard. Direct whenever possible, no account, no data collection.">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apobri">
 <meta property="og:title" content="Apobri: use your Windows PC from your iPad">
-<meta property="og:description" content="Apobri connects your iPad or iPhone directly to your Windows PC: see the screen and use touch, mouse and keyboard. No cloud, no account, no data collection.">
+<meta property="og:description" content="Apobri connects your iPad or iPhone directly to your Windows PC: see the screen and use touch, mouse and keyboard. Direct whenever possible, no account, no data collection.">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_TW">
 <!-- TODO(待使用者填 / to fill): once the domain is known add <link rel="canonical"> and og:url / og:image. -->
@@ -31,8 +31,8 @@
 <main id="main">
   <div class="wrap">
 <section class="hero">
-  <h1>Use your Windows PC from your iPad.<br>Direct connection, no cloud.</h1>
-  <p class="lead">Apobri is an iPad/iPhone app plus a Host for Windows. Over your home network or Tailscale, the two devices exchange the screen and your input directly. There is no account and no relay server.</p>
+  <h1>Use your Windows PC from your iPad.<br>Direct connection, no account.</h1>
+  <p class="lead">Apobri is an iPad/iPhone app plus a Host for Windows. Over your home network or Tailscale, the two devices exchange the screen and your input directly. There is no account. When a direct connection is not possible (for example, away from home), the connection may be set up through a relay service on Cloudflare and STUN (and, if needed, a TURN relay); they cannot see your screen or content.</p>
   <div class="btns">
     <a class="btn" href="#download">Download and install</a>
     <a class="btn ghost" href="quickstart.html">Get started</a>
@@ -52,8 +52,8 @@
     <p class="meta">By default this is remote control of the PC&rsquo;s existing screen; an iPad can also extend Windows as an extra display (Settings &gt; Second screen &gt; Extend). See <a href="support.html#limits">known limitations</a>.</p>
   </article>
   <article class="card">
-    <h3>Privacy: a direct connection, no cloud</h3>
-    <p>The screen and your input go only to devices you paired. The Host has no telemetry, analytics or ads, and opens no outbound Internet connection of its own (the auto-update service only asks GitHub for new versions; see the <a href="privacy.html#update">privacy policy</a>). A new device needs the pairing code or QR code shown on the PC. To make it a trusted device (no code next time; share and clipboard shortcuts work in the background) press <em>Allow</em> once &ndash; on the PC, or on the phone or iPad that is already controlling this PC; the PC shows a notification when that happens.</p>
+    <h3>Privacy: direct whenever possible, end-to-end encrypted</h3>
+    <p>The screen and your input go only to devices you paired. The Host has no telemetry, analytics or ads. The only things that go out to the Internet are the auto-update service (it only asks GitHub for new versions) and, when a direct connection is not possible, the Cloudflare relay service (it cannot see the screen or content); see the <a href="privacy.html#flow">privacy policy</a>. A new device needs the pairing code or QR code shown on the PC. To make it a trusted device (no code next time; share and clipboard shortcuts work in the background) press <em>Allow</em> once &ndash; on the PC, or on the phone or iPad that is already controlling this PC; the PC shows a notification when that happens.</p>
     <p class="meta"><a href="privacy.html">Read the privacy policy</a></p>
   </article>
 </div>
@@ -62,7 +62,7 @@
 <figure>
   <svg viewBox="0 0 720 300" role="img" aria-labelledby="dg-t dg-d" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-t">How Apobri connects</title>
-  <desc id="dg-d">An iPad and a Windows PC connect directly over the same local network or Tailscale, with no cloud server in between.</desc>
+  <desc id="dg-d">An iPad and a Windows PC connect directly over the same local network or Tailscale; when that is not possible, the connection may be set up through an encrypted relay service on Cloudflare, which cannot see the screen or content.</desc>
   <style>
     .box { fill: var(--bg); stroke: var(--text); stroke-width: 2; }
     .t { fill: var(--text); font: 600 17px system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
@@ -84,7 +84,7 @@
   <text class="s" x="360" y="156" text-anchor="middle">screen, input, clipboard, files</text>
   <path class="dash" d="M125 200 V236 H595 V200"/>
   <text class="s" x="360" y="258" text-anchor="middle">Same local network, or a Tailscale private network</text>
-  <text class="s" x="360" y="30" text-anchor="middle">No cloud, no account, no relay server</text>
+  <text class="s" x="360" y="30" text-anchor="middle">No account; a relay never sees your screen</text>
   <path class="dash" d="M300 42 H420"/>
 </svg>
   <figcaption>The screen and your input travel only between the two devices you paired.</figcaption>
@@ -112,14 +112,14 @@
 <div class="tablewrap"><table>
   <tr><th scope="row">Windows PC</th><td>Windows 10 or Windows 11. A GPU with hardware H.264 / HEVC encoding is recommended: Intel (QSV), NVIDIA (NVENC) or AMD (AMF) (almost every recent laptop and desktop has one). PCs without a hardware encoder (for example some virtual machines) fall back to software encoding: the screen still works, but it is slower and uses more power. The Host uses ffmpeg for video encoding; see <a href="licenses.html">Licenses</a>.</td></tr>
   <tr><th scope="row">iPad / iPhone</th><td>iPadOS 17.0 or iOS 17.0 or later. Local Network permission is needed on the first connection.</td></tr>
-  <tr><th scope="row">Network</th><td>The iPad and the PC on the same local network, or Tailscale installed and signed in on both. Other routes over the Internet are not supported (there is no STUN or TURN).</td></tr>
+  <tr><th scope="row">Network</th><td>Best: the iPad and the PC on the same local network, or Tailscale installed and signed in on both. Without either, the connection may be set up through a relay service on Cloudflare and STUN (and, if needed, a TURN relay), but this is not guaranteed on every network (some company, school or mobile networks are too restrictive).</td></tr>
 </table></div>
 
   </div>
 </main>
 <footer class="site">
   <div class="wrap">
-    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no cloud.</p>
+    <p>Apobri: use your Windows PC from an iPad or iPhone. No data collection, no account.</p>
     <nav aria-label="Footer"><a href="index.html">Home</a><a href="quickstart.html">Get started</a><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="licenses.html">Licenses</a></nav>
     <p>&copy; 2026 RuiTang Young</p>
   </div>

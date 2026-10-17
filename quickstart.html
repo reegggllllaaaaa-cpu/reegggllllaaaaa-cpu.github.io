@@ -59,7 +59,7 @@
 </ol>
 
 <h2 id="remote">在外面也能連（Tailscale）</h2>
-<p>Apobri 沒有自己的雲端伺服器，畫面直接在你的裝置之間傳送。人不在家時，要讓電腦和 iPhone／iPad 加入同一個屬於你自己的私人網路：免費的 <a href="https://tailscale.com/">Tailscale</a>。只要設定一次，大約 5 分鐘，之後打開 Apobri 就會自己找到路。</p>
+<p>Apobri 能直連就直連，畫面直接在你的裝置之間傳送。人不在家時，Apobri 可能經 Cloudflare 的轉接服務與 STUN（必要時 TURN 中繼）幫你連回電腦，它們看不到你的畫面與內容；但這條路不保證在每個網路都通。最穩定的做法是讓電腦和 iPhone／iPad 加入同一個屬於你自己的私人網路：免費的 <a href="https://tailscale.com/">Tailscale</a>。只要設定一次，大約 5 分鐘，之後打開 Apobri 就會自己找到路。</p>
 <ol class="steps">
   <li>
     <h3>在電腦安裝 Tailscale 並登入</h3>
@@ -89,7 +89,7 @@
     <li><strong>允許了「區域網路」權限嗎？</strong>到 iPad「設定」找到 Apobri，確認「區域網路」已開啟。</li>
     <li><strong>電腦醒著、Host 在執行嗎？</strong>從開始功能表再開一次配對頁（最多等 20 秒），打不開就是 Host 沒啟動。</li>
     <li><strong>防火牆。</strong>安裝時若沒有勾選防火牆規則，Windows 防火牆可能擋住連線。可重新執行安裝程式並勾選該項。</li>
-    <li><strong>人在外面。</strong>Apobri 沒有雲端中繼，要用 Tailscale：照<a href="#remote">在外面也能連</a>的四個步驟設定一次即可。</li>
+    <li><strong>人在外面。</strong>Apobri 可能經 Cloudflare 的轉接服務自動連回電腦；連不上、或想要最穩定的連線，就用 Tailscale：照<a href="#remote">在外面也能連</a>的四個步驟設定一次即可。</li>
     <li><strong>「附近的電腦」是空的。</strong>可能是不同網段、或在電腦的 <code>config.json</code> 關閉了探索（<code>"Discovery": false</code>）。改用 QR Code 或手動輸入即可。</li>
   </ul>
 </details>
@@ -133,7 +133,7 @@
 </main>
 <footer class="site">
   <div class="wrap">
-    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不需帳號。</p>
     <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
     <p>&copy; 2026 RuiTang Young</p>
   </div>

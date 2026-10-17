@@ -39,7 +39,7 @@
 
 <h2 id="faq">常見問題</h2>
 <details><summary>需要註冊帳號嗎？</summary><p>不需要。Apobri 沒有帳號系統。</p></details>
-<details id="remote"><summary>可以在外面用嗎？</summary><p>可以，用 Tailscale：電腦與 iPhone／iPad 都安裝 Tailscale 並登入同一個帳號，步驟見<a href="quickstart.html#remote">快速上手：在外面也能連</a>。Apobri 本身沒有雲端中繼，也不使用 STUN／TURN，所以只支援區域網路或 Tailscale 這類你自己建立的私人網路。Tailscale 不隨附於 Apobri，需自行安裝，並適用 Tailscale 自己的條款與隱私政策。</p></details>
+<details id="remote"><summary>可以在外面用嗎？</summary><p>可以。電腦和 iPhone／iPad 無法直接連線時，Apobri 可能經 Cloudflare 的轉接服務與 STUN（必要時 TURN 中繼）建立連線，它們看不到你的畫面與內容；但有些網路限制太嚴，不保證都連得上。最穩定的做法是 Tailscale：電腦與 iPhone／iPad 都安裝 Tailscale 並登入同一個帳號，步驟見<a href="quickstart.html#remote">快速上手：在外面也能連</a>。Tailscale 不隨附於 Apobri，需自行安裝，並適用 Tailscale 自己的條款與隱私政策。</p></details>
 <details id="relay"><summary>App 顯示「目前經由中繼連線，延遲較高」是什麼意思？</summary><p>Tailscale 沒辦法在電腦和 iPad／iPhone 之間打通直接的路，只好經由 Tailscale 的中繼伺服器（DERP）轉送。中繼的頻寬較小、來回時間較長（常見 60–150 ms）。Apobri 偵測到中繼時會自動把每一張畫面控制在中繼送得動的大小、捲動停下後再逐步補回細節，解析度與幀率不變，所以仍然可以順暢操作；但延遲一定比直連高。</p>
 <p>想要直連，可以試試（都不是必要的）：</p>
 <ul>
@@ -90,7 +90,7 @@
   <li><strong>剪貼簿可同步文字、圖片與檔案</strong>，但大小有上限（例如圖片約 16 MB），也不支援整個資料夾。</li>
   <li><strong>舊版 App 與網頁版仍用明文 HTTP 建立連線。</strong>新版 iPad／iPhone App 的「信令」（建立連線的握手）走 TLS（wss，連接埠 8766），並釘選電腦憑證的指紋。舊版 App 與網頁版（PWA）仍使用未加密的 HTTP 連接埠（預設 8765），同一個網路上的其他人理論上可以看到這段握手（含以配對碼登入時的挑戰回應）。<strong>在不信任的網路（公共 Wi-Fi、辦公室）上，請使用新版 App，或改用 Tailscale 連線。</strong></li>
   <li><strong>配對碼存在 <code>config.json</code> 為純文字</strong>（僅限目前 Windows 使用者讀取）。同一個 Windows 帳號下的其他程式可以讀到它。</li>
-  <li><strong>不支援經由網際網路的直連</strong>：沒有 STUN／TURN；遠端使用請用 Tailscale。</li>
+  <li><strong>經網際網路連線不保證成功</strong>：無法直連時，可能經 Cloudflare 的轉接服務與 STUN（必要時 TURN 中繼）建立連線，但限制嚴格的網路可能連不上；遠端使用最穩定的是 Tailscale。</li>
   <li><strong>喚醒（Wake-on-LAN）</strong>只在同一個區網有效，且尚未完整實機驗證，見<a href="quickstart.html#wake">快速上手</a>。</li>
 </ul>
 
@@ -98,7 +98,7 @@
 </main>
 <footer class="site">
   <div class="wrap">
-    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不經雲端。</p>
+    <p>Apobri：用 iPad 或 iPhone 操作 Windows 電腦。不蒐集資料，不需帳號。</p>
     <nav aria-label="Footer"><a href="index.html">首頁</a><a href="quickstart.html">快速上手</a><a href="support.html">支援</a><a href="privacy.html">隱私權政策</a><a href="licenses.html">授權與第三方聲明</a></nav>
     <p>&copy; 2026 RuiTang Young</p>
   </div>
