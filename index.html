@@ -103,14 +103,14 @@
     <h3>Windows Host</h3>
     <p>在要被操作的 Windows 電腦上執行安裝程式（Windows 10 2004 以上、64 位元）。安裝只會跳出<strong>一次</strong>系統管理員授權，一次裝好 Host、通知區域圖示、背景服務（鎖定畫面、虛擬螢幕、自動更新）與防火牆規則（只對家用網路與 Tailscale 開放）。裝完會自動啟動，並開啟顯示 QR Code 的配對頁，用 iPad／iPhone 的 Apobri 掃描即可配對。</p>
     <p><a class="btn" href="https://github.com/reegggllllaaaaa-cpu/reegggllllaaaaa-cpu.github.io/releases/download/host-installer-v1.0.0/Apobri-Setup-1.0.0.exe">下載 Windows 安裝程式</a></p>
-    <p><strong>如果出現「Windows 已保護您的電腦」：</strong>安裝程式目前還沒有程式碼簽章，Microsoft Defender SmartScreen 會顯示這個藍色視窗。請按<strong>「其他資訊」</strong>，確認檔名是 <code>Apobri-Setup-…exe</code>，再按<strong>「仍要執行」</strong>。下載頁旁附有 SHA-256 檢查碼，可用 PowerShell 的 <code>Get-FileHash</code> 核對。</p>
+    <p><strong>如果出現「Windows 已保護您的電腦」：</strong>安裝程式目前還沒有程式碼簽章，Microsoft Defender SmartScreen 會顯示這個藍色視窗。請按<strong>「其他資訊」</strong>，確認檔名是 <code>Apobri-Setup-…exe</code>，再按<strong>「仍要執行」</strong>。這個警告只是因為安裝程式還沒簽章；想自己核對下載的檔案是否完整，可以用 PowerShell 的 <code>Get-FileHash</code> 算出 SHA-256，再和下載頁上的比對檔 <a href="https://github.com/reegggllllaaaaa-cpu/reegggllllaaaaa-cpu.github.io/releases/download/host-installer-v1.0.0/Apobri-Setup-1.0.0.exe.sha256">Apobri-Setup-…exe.sha256</a> 裡的值比對（檔案內容就是那一串 SHA-256）。</p>
     <p>解除安裝：Windows「設定 → 應用程式 → 已安裝的應用程式 → Apobri → 解除安裝」，會移除服務、虛擬螢幕驅動與防火牆規則，並詢問是否保留已配對裝置等資料。</p>
   </article>
 </div>
 
 <h2 id="requirements">系統需求</h2>
 <div class="tablewrap"><table>
-  <tr><th scope="row">Windows 電腦</th><td>Windows 10 或 Windows 11。需要有硬體 H.264／HEVC 編碼的 GPU：Intel（QSV）、NVIDIA（NVENC）或 AMD（AMF）任一種（近年的筆電與桌機幾乎都有）。沒有硬體編碼器的電腦（例如部分虛擬機）無法傳送畫面。Host 的影像編碼使用 ffmpeg，詳見<a href="licenses.html">授權與第三方聲明</a>。</td></tr>
+  <tr><th scope="row">Windows 電腦</th><td>Windows 10 或 Windows 11。建議有硬體 H.264／HEVC 編碼的 GPU：Intel（QSV）、NVIDIA（NVENC）或 AMD（AMF）任一種（近年的筆電與桌機幾乎都有）。沒有硬體編碼器的電腦（例如部分虛擬機）會退回軟體編碼，畫面仍可傳送，但比較慢、也比較耗電。Host 的影像編碼使用 ffmpeg，詳見<a href="licenses.html">授權與第三方聲明</a>。</td></tr>
   <tr><th scope="row">iPad／iPhone</th><td>iPadOS 17.0 或 iOS 17.0 以上。第一次連線時需允許「區域網路」權限。</td></tr>
   <tr><th scope="row">網路</th><td>iPad 與電腦在同一個區域網路，或兩邊都安裝並登入 Tailscale。不支援經由網際網路的其他連線方式（沒有 STUN／TURN）。</td></tr>
 </table></div>

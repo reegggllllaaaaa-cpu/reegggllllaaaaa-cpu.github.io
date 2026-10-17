@@ -48,9 +48,9 @@
   <li>在電腦上執行 <code>tailscale netcheck</code>，看「UDP」是否為 true、「PortMapping」是否有值；<code>tailscale status</code> 裡對方裝置那一行若顯示 <code>relay "xxx"</code> 代表目前走中繼，顯示 <code>direct</code> 代表直連。</li>
 </ul></details>
 <details><summary>為什麼要按「允許」成為信任裝置？</summary><p>新裝置只要有電腦上的配對碼或 QR Code 就能連線，沒有配對碼的人連不進來。按「允許」是額外一步：這台裝置會成為信任裝置，金鑰加密存在電腦上，之後不必再輸入配對碼，分享選單與剪貼簿捷徑也能在背景使用。為了安全，只有正在操作這台電腦的那條連線能核准，60 秒內有效，整台電腦每小時最多 3 次，電腦鎖定或有人在電腦前時不能核准。</p></details>
-<details><summary>有聲音嗎？</summary><p>有，但還很新、尚未在真的 iPad 上驗證：Host 會把 Windows 的系統聲音以 Opus 傳到 iPad，只在 WebRTC 傳輸時有效（WebSocket／HEVC 傳輸沒有聲音）。只有在 iPad 已連線且「聲音」開關開著時才會擷取，電腦本機照常出聲。延遲與音畫同步還沒有實測。</p></details>
+<details><summary>有聲音嗎？</summary><p>有，但還很新、尚未在真的 iPad 上驗證：Host 會把 Windows 的系統聲音以 Opus 傳到 iPad，只在 WebRTC 傳輸時有效（WebSocket／HEVC 傳輸沒有聲音）。只有在 iPad 已連線且「聲音」開關開著時才會擷取。手機確認正在播放時，電腦本身會暫時靜音（避免兩邊同時出聲）；斷線、關掉聲音或重新啟動後會自動還原。想讓電腦繼續出聲，可在 <code>config.json</code> 設 <code>"AudioMutePcWhileConnected": false</code>。延遲與音畫同步還沒有實測。</p></details>
 <details><summary>支援哪些裝置？</summary><p>用戶端是 iPad 與 iPhone（iPadOS／iOS 17.0 以上）；被操作端是 Windows 10／11 電腦。目前沒有 Mac、Android 或 Linux 版。</p></details>
-<details><summary>如何撤銷一台裝置？</summary><p>在電腦上開配對頁，於裝置清單撤銷；或用命令列 <code>AppleBridge.Host.exe --devices</code> 列出、<code>AppleBridge.Host.exe --revoke &lt;編號開頭&gt;</code> 撤銷單一裝置，<code>--revoke all</code> 撤銷全部。已連線的工作階段會立刻中斷。</p></details>
+<details><summary>如何撤銷一台裝置？</summary><p>在電腦工作列的 Apobri 圖示選「已配對的裝置」移除；或用命令列 <code>AppleBridge.Host.exe --devices</code> 列出、<code>AppleBridge.Host.exe --revoke &lt;編號開頭&gt;</code> 撤銷單一裝置，<code>--revoke all</code> 撤銷全部。已連線的工作階段會立刻中斷。</p></details>
 <details><summary>怎麼關閉「附近的電腦」廣播？</summary><p>在 <code>%APPDATA%\AppleBridge\config.json</code> 加入 <code>"Discovery": false</code> 後重新啟動 Host。之後 iPad 需用 QR Code 或手動輸入位址配對。</p></details>
 <details><summary>為什麼程式檔案和資料夾叫 AppleBridge？</summary><p>Apobri 的前身名稱是 AppleBridge，Host 的程式檔名與資料夾（例如 <code>%APPDATA%\AppleBridge</code>）目前仍沿用舊稱。</p></details>
 
@@ -86,9 +86,9 @@
   <li><strong>一次串流一個螢幕。</strong>Host 會列出接上的螢幕，可選擇要串流哪一個；不能同時看多個螢幕。</li>
   <li><strong>延伸螢幕要自己開。</strong>預設 iPad 顯示的是電腦既有螢幕的內容；要讓 iPad 成為 Windows 多出來的螢幕，在 App 設定的「第二螢幕」選「延伸」（只有 iPad，電腦端 Host 也要是支援這項功能的版本）。</li>
   <li><strong>聲音尚未實機驗證，且只有 WebRTC 傳輸有。</strong>Windows 系統聲音會以 Opus 傳到 iPad，但還沒有在真的 iPad 上聽過；延遲與音畫同步未測，WebSocket／HEVC 傳輸沒有聲音。</li>
-  <li><strong>Ctrl+Alt+Del 無法從 iPad 送出。</strong>鎖定畫面、登入畫面、UAC 提示等「安全桌面」，Windows 不允許擷取與輸入，Apobri 只能顯示「電腦已鎖定」之類的說明，需在電腦上操作。以系統管理員身分執行的視窗也無法被操作。</li>
-  <li><strong>剪貼簿目前只同步純文字</strong>（尚未同步圖片與檔案）。檔案傳輸用獨立的傳檔功能，不支援整個資料夾。</li>
-  <li><strong>區域網路上的連線建立階段是明文 HTTP。</strong>畫面、輸入與資料通道都經 WebRTC 加密（DTLS），但「信令」（建立連線的握手，含以配對碼登入時的挑戰回應）在家用網路上走未加密的 HTTP 連接埠（預設 8765）。同一個網路上的其他人理論上可以看到這段握手。<strong>在不信任的網路（公共 Wi-Fi、辦公室）上，建議改用 Tailscale 連線</strong>，並留意電腦 Host 設定。我們正在規劃改為 TLS 並釘選憑證。</li>
+  <li><strong>Ctrl+Alt+Del 無法從 iPad 送出。</strong>鎖定畫面、登入畫面、UAC 提示等「安全桌面」，Windows 不允許擷取與輸入，Apobri 只能顯示「電腦已鎖定」之類的說明，需在電腦上操作。</li>
+  <li><strong>剪貼簿可同步文字、圖片與檔案</strong>，但大小有上限（例如圖片約 16 MB），也不支援整個資料夾。</li>
+  <li><strong>舊版 App 與網頁版仍用明文 HTTP 建立連線。</strong>新版 iPad／iPhone App 的「信令」（建立連線的握手）走 TLS（wss，連接埠 8766），並釘選電腦憑證的指紋。舊版 App 與網頁版（PWA）仍使用未加密的 HTTP 連接埠（預設 8765），同一個網路上的其他人理論上可以看到這段握手（含以配對碼登入時的挑戰回應）。<strong>在不信任的網路（公共 Wi-Fi、辦公室）上，請使用新版 App，或改用 Tailscale 連線。</strong></li>
   <li><strong>配對碼存在 <code>config.json</code> 為純文字</strong>（僅限目前 Windows 使用者讀取）。同一個 Windows 帳號下的其他程式可以讀到它。</li>
   <li><strong>不支援經由網際網路的直連</strong>：沒有 STUN／TURN；遠端使用請用 Tailscale。</li>
   <li><strong>喚醒（Wake-on-LAN）</strong>只在同一個區網有效，且尚未完整實機驗證，見<a href="quickstart.html#wake">快速上手</a>。</li>

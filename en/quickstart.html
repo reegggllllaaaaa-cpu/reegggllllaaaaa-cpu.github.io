@@ -53,12 +53,8 @@
     </ul>
   </li>
   <li>
-    <h3>Tap Allow to trust the device</h3>
-    <p>Once connected, the app asks &ldquo;Trust this iPad?&rdquo; Tap <em>Allow</em>; you can also press <em>Allow</em> on the PC&rsquo;s pairing page. When a phone or iPad approves itself, the PC shows a notification. <strong>If it was not you, open the Apobri icon in the taskbar &gt; &ldquo;Paired devices&rdquo; and remove it.</strong></p>
-  </li>
-  <li>
-    <h3>First connection</h3>
-    <p>After you enter the pairing code or scan the QR code, the iPad shows the Windows desktop; you do not need to press anything on the PC. If you tapped Allow to trust it, the same iPad reconnects later without a code. To remove a device, revoke it in the device list on the pairing page.</p>
+    <h3>First connection: tap Allow to trust the device</h3>
+    <p>After you enter the pairing code or scan the QR code, the iPad shows the Windows desktop; you do not need to press anything on the PC first. Once connected, the app asks &ldquo;Trust this iPad?&rdquo; Tap <em>Allow</em> (or press <em>Allow</em> on the PC&rsquo;s pairing page instead). A trusted iPad reconnects later without a code. When a phone or iPad approves itself, the PC shows a notification. <strong>If it was not you, open the Apobri icon in the taskbar &gt; &ldquo;Paired devices&rdquo; and remove it.</strong></p>
   </li>
 </ol>
 
@@ -70,8 +66,8 @@
     <p>On the PC, open <a href="https://tailscale.com/download/windows">tailscale.com/download/windows</a>, install it and sign in with a Google, Microsoft, Apple or GitHub account (free for personal use). We recommend turning on &ldquo;Run unattended&rdquo; in the menu of the Tailscale icon on the taskbar, so the PC stays reachable after a restart, before anyone signs in to Windows.</p>
   </li>
   <li>
-    <h3>Restart the PC once</h3>
-    <p>Only the first time: Apobri uses the network addresses that exist when it starts. If Tailscale was installed while Apobri was already running, restart the PC once and it keeps working from then on. The menu of the Apobri icon on the taskbar shows where you are; when it says &ldquo;Away from home: ready&rdquo; this step is done.</p>
+    <h3>Restart the PC only if needed</h3>
+    <p>Usually not needed: newer Host versions pick up new network addresses automatically. Only an older Host (which uses the addresses that exist when it starts) needs one restart if Tailscale was installed later. The menu of the Apobri icon on the taskbar shows where you are; when it says &ldquo;Away from home: ready&rdquo; this step is done.</p>
   </li>
   <li>
     <h3>Install Tailscale on the iPhone or iPad with the same account</h3>
@@ -129,7 +125,7 @@
   <summary>Other: pairing keeps waiting / remove a device</summary>
   <ul>
     <li>Pairing keeps waiting: check that the pairing code is right, or scan the QR code on the PC instead. If the PC is locked, unlock it first. Otherwise start pairing again on the iPad.</li>
-    <li>A lost or retired iPad: pairing page &gt; device list &gt; revoke; or run <code>AppleBridge.Host.exe --revoke all</code> to revoke every device (the Host&rsquo;s program file still uses the old name AppleBridge).</li>
+    <li>A lost or retired iPad: Apobri icon in the taskbar &gt; &ldquo;Paired devices&rdquo; &gt; remove; or run <code>AppleBridge.Host.exe --revoke all</code> to revoke every device (the Host&rsquo;s program file still uses the old name AppleBridge).</li>
   </ul>
 </details>
 

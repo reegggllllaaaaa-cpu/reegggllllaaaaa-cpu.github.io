@@ -53,12 +53,8 @@
     </ul>
   </li>
   <li>
-    <h3>按「允許」成為信任裝置</h3>
-    <p>連上後，App 會問「信任這台 iPad？」，按「允許」即可；也可以在電腦的配對頁按「允許」。手機自己核准時，電腦會跳出通知，<strong>如果不是你，請到工作列的 Apobri 圖示 >「已配對的裝置」移除。</strong></p>
-  </li>
-  <li>
-    <h3>第一次連線</h3>
-    <p>輸入配對碼或掃描 QR Code 後，iPad 就會顯示 Windows 桌面，不必在電腦上按任何東西。如果你按了「允許」成為信任裝置，往後同一台 iPad 重新連線就不需要再輸入配對碼。要撤銷某台裝置，到配對頁的裝置清單移除。</p>
+    <h3>第一次連線、按「允許」成為信任裝置</h3>
+    <p>輸入配對碼或掃描 QR Code 後，iPad 就會顯示 Windows 桌面，這一步不必先在電腦上按任何東西。連上後 App 會問「信任這台 iPad？」，按「允許」即可（也可以改在電腦的配對頁按「允許」）；成為信任裝置後，往後同一台 iPad 重新連線就不必再輸入配對碼。手機自己核准時，電腦會跳出通知，<strong>如果不是你，請到工作列的 Apobri 圖示 >「已配對的裝置」移除。</strong></p>
   </li>
 </ol>
 
@@ -70,8 +66,8 @@
     <p>在電腦打開 <a href="https://tailscale.com/download/windows">tailscale.com/download/windows</a> 下載安裝，用 Google、Microsoft、Apple 或 GitHub 帳號登入（個人使用免費）。建議在工作列 Tailscale 圖示的選單打開「Run unattended」，電腦重新開機、還沒登入 Windows 時也連得到。</p>
   </li>
   <li>
-    <h3>重新啟動電腦一次</h3>
-    <p>只有第一次需要：Apobri 只會接上啟動當下就有的網路位址。如果 Tailscale 是在 Apobri 已經執行時才裝好，重新開機一次後就一直有效。工作列 Apobri 圖示的選單會告訴你目前的狀態，顯示「在外面也能連：已就緒」就完成了這一步。</p>
+    <h3>必要時重新啟動電腦</h3>
+    <p>通常不必重開機：新版 Host 會自動接上新出現的網路位址。只有舊版 Host（只接上啟動當下就有的位址）在 Tailscale 是後來才裝好時，才需要重新開機一次。工作列 Apobri 圖示的選單會告訴你目前的狀態，顯示「在外面也能連：已就緒」就完成了這一步。</p>
   </li>
   <li>
     <h3>在 iPhone／iPad 安裝 Tailscale，登入同一個帳號</h3>
@@ -129,7 +125,7 @@
   <summary>其他：一直停在等待配對／想撤銷裝置</summary>
   <ul>
     <li>配對一直等待：確認配對碼打對了，或直接掃電腦上的 QR Code。電腦要是鎖定中，也請先解鎖。還是不行就從 iPad 再發起一次。</li>
-    <li>遺失或不再使用某台 iPad：配對頁 &gt; 裝置清單 &gt; 撤銷；或在命令列執行 <code>AppleBridge.Host.exe --revoke all</code> 撤銷全部裝置（Host 的程式檔名仍沿用舊稱 AppleBridge）。</li>
+    <li>遺失或不再使用某台 iPad：工作列 Apobri 圖示 &gt;「已配對的裝置」移除；或在命令列執行 <code>AppleBridge.Host.exe --revoke all</code> 撤銷全部裝置（Host 的程式檔名仍沿用舊稱 AppleBridge）。</li>
   </ul>
 </details>
 
