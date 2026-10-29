@@ -40,13 +40,9 @@
 <h2 id="faq">常見問題</h2>
 <details><summary>需要註冊帳號嗎？</summary><p>不需要。Apobri 沒有帳號系統。</p></details>
 <details id="remote"><summary>可以在外面用嗎？</summary><p>可以。電腦和 iPhone／iPad 無法直接連線時，Apobri 可能經 Cloudflare 的轉接服務與 STUN（必要時 TURN 中繼）建立連線，它們看不到你的畫面與內容；但有些網路限制太嚴，不保證都連得上。最穩定的做法是 Tailscale：電腦與 iPhone／iPad 都安裝 Tailscale 並登入同一個帳號，步驟見<a href="quickstart.html#remote">快速上手：在外面也能連</a>。Tailscale 不隨附於 Apobri，需自行安裝，並適用 Tailscale 自己的條款與隱私政策。</p></details>
-<details id="relay"><summary>App 顯示「目前經由中繼連線，延遲較高」是什麼意思？</summary><p>Tailscale 沒辦法在電腦和 iPad／iPhone 之間打通直接的路，只好經由 Tailscale 的中繼伺服器（DERP）轉送。中繼的頻寬較小、來回時間較長（常見 60–150 ms）。Apobri 偵測到中繼時會自動把每一張畫面控制在中繼送得動的大小、捲動停下後再逐步補回細節，解析度與幀率不變，所以仍然可以順暢操作；但延遲一定比直連高。</p>
-<p>想要直連，可以試試（都不是必要的）：</p>
-<ul>
-  <li>家裡的路由器開啟 <strong>UPnP</strong> 或 <strong>NAT-PMP／PCP</strong>（路由器設定頁裡常在「進階」「NAT」或「連接埠轉送」）。開啟後 Tailscale 通常能自動建立直連。</li>
-  <li>iPhone／iPad 換一個網路試試：有些公司、學校、飯店或行動網路會擋 UDP，只能走中繼。</li>
-  <li>在電腦上執行 <code>tailscale netcheck</code>，看「UDP」是否為 true、「PortMapping」是否有值；<code>tailscale status</code> 裡對方裝置那一行若顯示 <code>relay "xxx"</code> 代表目前走中繼，顯示 <code>direct</code> 代表直連。</li>
-</ul></details>
+<details id="relay"><summary>App 顯示「經由中繼」或「改用行動網路」是什麼意思？</summary><p>電腦和 iPhone／iPad 之間沒辦法走直通的路時，資料會經過中途的伺服器繞一段（中繼）。繞遠路比較慢（常見多 60–150 ms），但畫面的清晰度與流暢度不變，照樣可以操作。</p>
+<p>你不需要做任何設定。Apobri 會自己試好幾條路——Tailscale、Apobri 自己直通網際網路的路——哪條快就用哪條；連線中找到更快的路，也會自動換過去。</p>
+<p>如果目前的 Wi‑Fi 怎麼試都只能繞遠路（有些公司、學校、飯店或店家的 Wi‑Fi 會擋掉直通的連線），而你的 iPhone／iPad 有行動網路，App 會問你要不要「改用行動網路」：按一下就換過去，會用到行動數據。不想換就不用理它，連線照樣能用。</p></details>
 <details><summary>為什麼要按「允許」成為信任裝置？</summary><p>新裝置只要有電腦上的配對碼或 QR Code 就能連線，沒有配對碼的人連不進來。按「允許」是額外一步：這台裝置會成為信任裝置，金鑰加密存在電腦上，之後不必再輸入配對碼，分享選單與剪貼簿捷徑也能在背景使用。為了安全，只有正在操作這台電腦的那條連線能核准，60 秒內有效，整台電腦每小時最多 3 次，電腦鎖定或有人在電腦前時不能核准。</p></details>
 <details><summary>有聲音嗎？</summary><p>有，但還很新、尚未在真的 iPad 上驗證：Host 會把 Windows 的系統聲音以 Opus 傳到 iPad，只在 WebRTC 傳輸時有效（WebSocket／HEVC 傳輸沒有聲音）。只有在 iPad 已連線且「聲音」開關開著時才會擷取。手機確認正在播放時，電腦本身會暫時靜音（避免兩邊同時出聲）；斷線、關掉聲音或重新啟動後會自動還原。想讓電腦繼續出聲，可在 <code>config.json</code> 設 <code>"AudioMutePcWhileConnected": false</code>。延遲與音畫同步還沒有實測。</p></details>
 <details><summary>支援哪些裝置？</summary><p>用戶端是 iPad 與 iPhone（iPadOS／iOS 17.0 以上）；被操作端是 Windows 10／11 電腦。目前沒有 Mac、Android 或 Linux 版。</p></details>
